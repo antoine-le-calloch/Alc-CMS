@@ -14,14 +14,14 @@ const ComponentsPage = () => {
     const [message, setMessage] = useState('Loading...')
 
     useEffect(() => {
-        async function fetchPosts() {
+        async function fetchComponents() {
             let res = await fetch('/api/pages')
             let data = await res.json()
             setComponents(data)
             if(data.length == 0)
                 setMessage('No components created yet !')
         }
-        fetchPosts()
+        fetchComponents()
     }, [])
 
     return (

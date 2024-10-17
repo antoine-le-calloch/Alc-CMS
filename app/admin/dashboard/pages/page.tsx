@@ -13,14 +13,14 @@ const PagesPage = () => {
     const [message, setMessage] = useState('Loading...')
 
     useEffect(() => {
-        async function fetchPosts() {
+        async function fetchPages() {
             let res = await fetch('/api/pages')
             let data = await res.json()
             setPages(data)
             if(data.length == 0)
                 setMessage('No pages created yet !')
         }
-        fetchPosts()
+        fetchPages()
     }, [])
 
     return (
