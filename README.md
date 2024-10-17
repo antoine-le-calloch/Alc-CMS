@@ -24,6 +24,15 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Development
+
+For offline development you can use firebase as follows:
+
+```bash
+cd CMS
+firebase emulators:start --project project-id
+```
+
 ## 2. Code standards
 
 - Use Image component from `next/image` for images.
