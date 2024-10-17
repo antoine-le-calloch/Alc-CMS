@@ -31,5 +31,8 @@ next-env.d.ts
 # log
 *.log
 
+# dev database dump
+dump/
+
 # project
 .idea/
