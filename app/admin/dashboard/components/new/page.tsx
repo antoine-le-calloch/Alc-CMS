@@ -21,9 +21,9 @@ const NewComponentPage = () => {
         if (response.ok) {
             setTitle("");
             setHtml("");
-            alert("New page successfully created !");
+            alert("New component successfully created !");
         }else{
-            console.log(response)
+            alert("Error creating this component !");
         }
     }
     
