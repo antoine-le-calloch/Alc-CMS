@@ -29,7 +29,6 @@ Open [http://localhost:3000](http://localhost:3000).
 For offline development you can use firebase as follows:
 
 ```bash
-cd CMS
 firebase emulators:start --project project-id
 ```
 
