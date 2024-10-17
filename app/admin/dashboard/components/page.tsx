@@ -10,12 +10,12 @@ type Component = {
 };
 
 const ComponentsPage = () => {
-    const [pages, setComponents] = useState([])
+    const [components, setComponents] = useState([])
     const [message, setMessage] = useState('Loading...')
 
     useEffect(() => {
         async function fetchComponents() {
-            let res = await fetch('/api/pages')
+            let res = await fetch('/api/components')
             let data = await res.json()
             setComponents(data)
             if(data.length == 0)
@@ -36,10 +36,10 @@ const ComponentsPage = () => {
                 </Link>
             </div>
             <div className="flex flex-col border-t border-gray-500">
-                { pages.length === 0 ? (
+                { components.length === 0 ? (
                     <div className="my-4 text-center">{message}</div>
                 ) : (
-                    pages.map((post: Component, index: number) => (
+                    components.map((post: Component, index: number) => (
                         <div key={index} className="flex items-center justify-between border-b border-gray-200 p-4">
                             <div className="font-bold">{post.title}</div>
                             <div className="font-bold">{post.html}</div>
