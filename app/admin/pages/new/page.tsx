@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import Button from "@/components/Button";
 
-const NewPagePage = () => {
+export default function NewPagePage() {
     const [title, setTitle] = useState("")
     
     const handleSubmit = async () => {
@@ -49,5 +49,3 @@ const NewPagePage = () => {
         </div>
     )
 };
-
-export default NewPagePage;

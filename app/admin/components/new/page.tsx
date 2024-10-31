@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import Button from "@/components/Button";
 
-const NewComponentPage = () => {
+export default function NewComponentPage() {
     const [title, setTitle] = useState("")
     const [html, setHtml] = useState("")
 
@@ -60,5 +60,3 @@ const NewComponentPage = () => {
         </div>
     )
 };
-
-export default NewComponentPage;

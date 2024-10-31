@@ -11,7 +11,7 @@ type Component = {
     html: string;
 };
 
-const ComponentsPage = () => {
+export default function ComponentsPage() {
     const [components, setComponents] = useState([])
     const [message, setMessage] = useState('Loading...')
 
@@ -79,5 +79,3 @@ const ComponentsPage = () => {
         </div>
     )
 };
-
-export default ComponentsPage;

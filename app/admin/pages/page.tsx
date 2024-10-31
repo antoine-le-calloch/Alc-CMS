@@ -9,7 +9,7 @@ type Page = {
     title: string;
 };
 
-const PagesPage = () => {
+export default function PagesPage() {
     const [pages, setPages] = useState([])
     const [message, setMessage] = useState('Loading...')
 
@@ -52,5 +52,3 @@ const PagesPage = () => {
         </div>
     )
 };
-
-export default PagesPage;
