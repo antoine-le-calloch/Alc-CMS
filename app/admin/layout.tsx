@@ -1,14 +1,15 @@
 import React from 'react';
-import "./globals.css";
+import {LeftPanel} from "@/components";
 
-export default function PrivateLayout({children}: {
+export default function AdminLayout({children}: {
     children: React.ReactNode
-}) {  
+}) {
     return (
-    <html lang="en">
-      <body className="relative min-h-screen">
-      {children}
-      </body>
-    </html>
-  );
+        <div className="flex">
+            <LeftPanel/>
+            <div className="flex flex-col w-full">
+                {children}
+            </div>
+        </div>
+    );
 }
