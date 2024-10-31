@@ -2,7 +2,7 @@ import React from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: 'Alc CMS',
+  title: 'CMS',
   description: 'Content Management System developed by Antoine Le Calloch',
 }
 
