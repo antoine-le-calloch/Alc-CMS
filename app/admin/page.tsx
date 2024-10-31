@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from 'react';
 import {TopBar} from "@/components";
 
-const DashboardPage: React.FC = () => {
+export default function AdminPage() {
     const [pages, setPages] = useState([])
     const [components, setComponents] = useState([])
 
@@ -60,5 +60,3 @@ const DashboardPage: React.FC = () => {
         </div>
     )
 };
-
-export default DashboardPage;
