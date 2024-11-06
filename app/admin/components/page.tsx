@@ -3,14 +3,14 @@
 import React, {useEffect, useState} from 'react';
 import List from "@/components/list";
 
-type Component = {
-    id: string;
+type Item = {
     title: string;
-    html: string;
+    infos: string;
 };
 
 export default function ComponentsPage() {
-    const [components, setComponents] = useState([])
+    const [components, setComponents] = useState<Item[] | null>(null)
+    
     useEffect(() => {
         async function fetchComponents() {
             let res = await fetch('/api/components')
@@ -18,7 +18,7 @@ export default function ComponentsPage() {
             setComponents(data)
         }
 
-        fetchComponents()
+        fetchComponents().then()
     }, [])
     
     const editComp = async () => {
@@ -32,8 +32,8 @@ export default function ComponentsPage() {
             },
             body: JSON.stringify({ id })
         });
-        if (response.ok) {
-            setComponents(components.filter((comp: Component) => comp.id !== id))
+        if (components && response.ok) {
+            setComponents(components.filter((comp: any) => comp.id !== id))
         } else {
             alert('Failed to delete component')
         }

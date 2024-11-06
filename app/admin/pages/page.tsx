@@ -3,13 +3,13 @@
 import React, {useEffect, useState} from 'react';
 import List from "@/components/list";
 
-type Page = {
-    id: number;
+type Item = {
     title: string;
+    infos: string;
 };
 
 export default function PagesPage() {
-    const [pages, setPages] = useState([])
+    const [pages, setPages] = useState(null)
 
     useEffect(() => {
         async function fetchPages() {
@@ -17,7 +17,7 @@ export default function PagesPage() {
             let data = await res.json()
             setPages(data)
         }
-        fetchPages()
+        fetchPages().then()
     }, [])
 
     return (
