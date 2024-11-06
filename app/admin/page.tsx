@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import TopBar from "@/components/layout/topBar";
-import DashboardList from "@/components/dashboard/dashboardList";
+import DashboardList from "@/components/dashboardList";
 import Loading from "@/components/utils/loading";
 
 export default function AdminPage() {
