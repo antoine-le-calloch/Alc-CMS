@@ -2,6 +2,7 @@ import Button from "@/components/utils/button";
 import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import React from "react";
 import Link from "next/link";
+import Loading from "@/components/utils/loading";
 
 type Item = {
     title: string;
@@ -9,7 +10,7 @@ type Item = {
 };
 
 interface ListProps {
-    items: Item[];
+    items: Item[] | null;
     newItemLink: string;
 }
 
@@ -26,28 +27,28 @@ const List: React.FC<ListProps> = ({items, newItemLink}) => {
                 </Link>
             </div>
             <div className="flex flex-col border-t border-gray-500">
-                <div className="flex flex-col border-t border-gray-500">
-                    {items.length === 0 ? (
-                        <div className="my-4 text-center">No data</div>
-                    ) : (
-                        items.map((item: Item, index: number) => (
-                            <div key={index} className="flex items-center justify-between border-b border-gray-200 p-4">
-                                <div className="font-bold">{item.title}</div>
-                                <div className="font-bold">{item.infos}</div>
-                                <div className="flex items-center">
-                                    <Button onClick={() => {
-                                    }} className="bg-transparent border-none">
-                                        <PencilSquareIcon className="h-6 w-6 ml-2 text-blue-400"/>
-                                    </Button>
-                                    <Button onClick={() => {
-                                    }} className="bg-transparent border-none">
-                                        <MinusCircleIcon className="h-6 w-6 ml-2 text-red-400"/>
-                                    </Button>
-                                </div>
+                { items === null || items.length === 0 ? (
+                    <div className="flex justify-center my-4">
+                        { items === null ? <Loading/> : <div>No data</div>}
+                    </div>
+                ) : (
+                    items.map((item: Item, index: number) => (
+                        <div key={index} className="flex items-center justify-between border-b border-gray-200 p-4">
+                            <div className="font-bold">{item.title}</div>
+                            <div className="font-bold">{item.infos}</div>
+                            <div className="flex items-center">
+                                <Button onClick={() => {
+                                }} className="bg-transparent border-none">
+                                    <PencilSquareIcon className="h-6 w-6 ml-2 text-blue-400"/>
+                                </Button>
+                                <Button onClick={() => {
+                                }} className="bg-transparent border-none">
+                                    <MinusCircleIcon className="h-6 w-6 ml-2 text-red-400"/>
+                                </Button>
                             </div>
-                        ))
-                    )}
-                </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
     );
