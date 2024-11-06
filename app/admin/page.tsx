@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {TopBar} from "@/components";
+import {PlusIcon} from "@heroicons/react/24/solid";
 
 export default function AdminPage() {
     const [pages, setPages] = useState([])
@@ -39,6 +40,11 @@ export default function AdminPage() {
                                     </div>
                                 ))
                             }
+                        </div>
+                        <div>
+                            <a href={"/admin/page/create"}>
+                                <PlusIcon className="h-5 w-5 inline-block mr-2"/>
+                            </a>
                         </div>
                     </div>
                     <div>

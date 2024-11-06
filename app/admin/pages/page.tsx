@@ -30,7 +30,7 @@ export default function PagesPage() {
                 <h2>
                     List
                 </h2>
-                <Link href="/admin/dashboard/pages/new" 
+                <Link href={`/admin/pages/new`} 
                       className="rounded bg-blue-300 hover:bg-blue-400 py-1 px-2">
                     New
                 </Link>
@@ -42,7 +42,7 @@ export default function PagesPage() {
                     pages.map((page: Page, index: number) => (
                         <div key={index} className="flex items-center justify-between border-b border-gray-200 p-4">
                             <div className="font-bold">{page.title}</div>
-                            <Link href={`/admin/dashboard/pages/edit/${page.id}`}>
+                            <Link href={`/admin/pages/edit/${page.id}`}>
                                 <PencilSquareIcon className="h-4 w-4 ml-2 text-gray-500" />
                             </Link>
                         </div>

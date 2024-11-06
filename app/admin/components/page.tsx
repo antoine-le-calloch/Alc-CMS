@@ -27,7 +27,7 @@ export default function ComponentsPage() {
         fetchComponents()
     }, [])
     
-    const editComp = async (id: string) => {
+    const editComp = async () => {
     }
     
     const deleteComp = async (id: string) => {
@@ -51,7 +51,7 @@ export default function ComponentsPage() {
                 <h2>
                     List
                 </h2>
-                <Link href="/admin/dashboard/components/new"
+                <Link href={`/admin/components/new`}
                       className="rounded bg-blue-300 hover:bg-blue-400 py-1 px-2">
                     New
                 </Link>

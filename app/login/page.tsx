@@ -12,7 +12,7 @@ export default function LoginPage() {
         e.preventDefault();
 
         if (email === 'admin@example.com' && password === 'password') {
-            router.push('/admin/dashboard');
+            router.push('/admin');
         } else {
             alert('Incorrect credentials');
         }
