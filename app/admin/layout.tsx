@@ -1,5 +1,5 @@
 import React from 'react';
-import {LeftPanel} from "@/components";
+import LeftPanel from "@/components/layout/leftPanel";
 
 export default function AdminLayout({children}: {
     children: React.ReactNode

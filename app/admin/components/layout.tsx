@@ -1,5 +1,5 @@
 import React from 'react';
-import {TopBar} from "@/components";
+import TopBar from "@/components/layout/topBar";
 
 export default function DashboardLayout({children}: {
     children: React.ReactNode

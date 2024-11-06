@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useState} from 'react';
-import Button from "@/components/Button";
+import Button from "@/components/utils/button";
 
 export default function EditPage({ params }: { params: { id: string } }) {
     const [title, setTitle] = useState("")

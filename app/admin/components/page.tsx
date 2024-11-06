@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import Button from "@/components/Button";
+import Button from "@/components/utils/button";
 
 type Component = {
     id: string;
