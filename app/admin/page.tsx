@@ -2,11 +2,12 @@
 
 import React, {useEffect, useState} from 'react';
 import {TopBar} from "@/components";
-import {PlusIcon} from "@heroicons/react/24/solid";
+import DashboardList from "@/components/dashboard/dashboardList";
+import Loading from "@/components/utils/loading";
 
 export default function AdminPage() {
-    const [pages, setPages] = useState([])
-    const [components, setComponents] = useState([])
+    const [pages, setPages] = useState(null)
+    const [components, setComponents] = useState(null)
 
     useEffect(() => {
         async function fetchPages() {
@@ -32,34 +33,17 @@ export default function AdminPage() {
                         <h1 className="mb-4">
                             PAGES
                         </h1>
-                        <div>
-                            {
-                                pages.map((page: any, index: number) => (
-                                    <div key={index} className="border border-gray-200 rounded-lg py-2 px-12 mb-2">
-                                        {page.title}
-                                    </div>
-                                ))
-                            }
-                        </div>
-                        <div>
-                            <a href={"/admin/page/create"}>
-                                <PlusIcon className="h-5 w-5 inline-block mr-2"/>
-                            </a>
-                        </div>
+                        { pages === null ? 
+                            <Loading/> : <DashboardList items={pages} plusLink={"/admin/pages/new"}/>
+                        }
                     </div>
                     <div>
                         <h1 className="mb-4">
                             COMPONENTS
                         </h1>
-                        <div>
-                            {
-                                components.map((component: any, index: number) => (
-                                    <div key={index} className="border border-gray-200 rounded-lg py-2 px-12 mb-2">
-                                        {component.title}
-                                    </div>
-                                ))
-                            }
-                        </div>
+                        { components === null ?
+                            <Loading/> : <DashboardList items={components} plusLink={"/admin/components/new"}/>
+                        }
                     </div>
                 </div>
             </div>
