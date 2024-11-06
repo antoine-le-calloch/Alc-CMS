@@ -1,12 +1,12 @@
 import React from 'react';
 import {PlusIcon} from "@heroicons/react/24/solid";
 
-interface ItemProps {
+type Item = {
     title: string;
 }
 
 interface DashboardListProps {
-    items: ItemProps[];
+    items: Item[];
     plusLink: string;
 }
 
