@@ -20,8 +20,8 @@ export default function AdminPage() {
             let data = await res.json()
             setComponents(data)
         }
-        fetchPages()
-        fetchComponents()
+        fetchPages().then()
+        fetchComponents().then()
     }, [])
     
     return (
