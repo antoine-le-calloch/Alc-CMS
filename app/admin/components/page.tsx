@@ -65,7 +65,7 @@ export default function ComponentsPage() {
                             <div className="font-bold">{component.title}</div>
                             <div className="font-bold">{component.html}</div>
                             <div className="flex items-center">
-                                <Button onClick={() => editComp(component.id)} className="bg-transparent border-none">
+                                <Button onClick={() => editComp()} className="bg-transparent border-none">
                                     <PencilSquareIcon className="h-6 w-6 ml-2 text-blue-400"/>
                                 </Button>
                                 <Button onClick={() => deleteComp(component.id)} className="bg-transparent border-none">
