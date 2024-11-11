@@ -1,5 +1,5 @@
 import {NextResponse} from "next/server";
-import {addDoc, collection, deleteDoc, doc, getDocs} from "firebase/firestore";
+import {addDoc, collection, deleteDoc, doc, getDocs, setDoc} from "firebase/firestore";
 import {db} from "@/lib/firebase";
 
 export async function GET() {
@@ -28,7 +28,7 @@ export async function PUT(request: Request) {
     try {
         const data = await request.json();
         const { id, ...rest } = data;
-        await addDoc(collection(db, 'pages'), { id, ...rest });
+        await setDoc(doc(db, 'pages', id), rest, { merge: true });
         return NextResponse.json({}, { status: 200 });
     } catch (error) {
         let message = error instanceof Error ? error.message : String(error);
