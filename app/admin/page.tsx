@@ -34,7 +34,7 @@ export default function AdminPage() {
                             PAGES
                         </h1>
                         { pages === null ? 
-                            <Loading/> : <DashboardList items={pages} plusLink={"/admin/pages/new"}/>
+                            <Loading/> : <DashboardList items={pages} itemLink="pages"/>
                         }
                     </div>
                     <div>
@@ -42,7 +42,7 @@ export default function AdminPage() {
                             COMPONENTS
                         </h1>
                         { components === null ?
-                            <Loading/> : <DashboardList items={components} plusLink={"/admin/components/new"}/>
+                            <Loading/> : <DashboardList items={components} itemLink="components"/>
                         }
                     </div>
                 </div>
