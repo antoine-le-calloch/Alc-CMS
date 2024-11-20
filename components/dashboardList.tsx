@@ -17,7 +17,8 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
             <div className="flex flex-col">
                 {items.length > 0 ?
                     items.map((item: any, index: number) => (
-                        <Link key={index} className="border border-gray-200 rounded-lg py-2 px-12 mb-2"
+                        <Link key={index} className="border border-gray-200 rounded-lg py-2 px-12 mb-2 
+                        hover:bg-blue-700 transition"
                                 href={`/admin/${itemLink}/edit/${item.id}`}>
                             {item.title}
                         </Link>
