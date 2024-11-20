@@ -18,7 +18,7 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
                 {items.length > 0 ?
                     items.map((item: any, index: number) => (
                         <Link key={index} className="border border-gray-200 rounded-lg py-2 px-12 mb-2 
-                        hover:bg-blue-700 transition duration-500"
+                        hover:scale-110 hover:border-blue-300 transition duration-500"
                                 href={`/admin/${itemLink}/edit/${item.id}`}>
                             {item.title}
                         </Link>
