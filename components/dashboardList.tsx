@@ -17,8 +17,8 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
             <div className="flex flex-col">
                 {items.length > 0 ?
                     items.map((item: any, index: number) => (
-                        <Link key={index} className="border border-gray-200 rounded-lg py-2 px-12 mb-2 
-                        hover:scale-105 hover:border-blue-300 hover:shadow-md transition duration-500"
+                        <Link key={index} className="border border-gray-300 rounded-lg py-2 px-12 mb-2 
+                        hover:scale-105 hover:shadow-md transition duration-500"
                                 href={`/admin/${itemLink}/edit/${item.id}`}>
                             {item.title}
                         </Link>
@@ -27,7 +27,9 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
             </div>
             <div>
                 <a href={`/admin/${itemLink}/new`}>
-                    <PlusIcon className="h-5 w-5 inline-block border border-black rounded-full"/>
+                    <PlusIcon className="h-6 w-6 inline-flex border border-black rounded-full 
+                    hover:rotate-[180deg] hover:scale-110 transition duration-500"
+                   />
                 </a>
             </div>
         </div>
