@@ -3,6 +3,7 @@ import {PlusIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 type Item = {
+    id: number;
     title: string;
 }
 
@@ -15,15 +16,13 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
     return (
         <div>
             <div className="flex flex-col">
-                {items.length > 0 ?
-                    items.map((item: any, index: number) => (
-                        <Link key={index} className="border border-gray-300 rounded-lg py-2 px-12 mb-2 
+                {items.length > 0 && items.map((item: Item) => (
+                        <Link key={item.id} className="border border-gray-300 rounded-lg py-2 px-12 mb-2 
                         hover:scale-105 hover:shadow-md transition duration-500"
                                 href={`/admin/${itemLink}/edit/${item.id}`}>
                             {item.title}
                         </Link>
-                    )) : <div>No items</div>
-                }
+                ))}
             </div>
             <div>
                 <a href={`/admin/${itemLink}/new`}>
