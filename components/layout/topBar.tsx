@@ -6,8 +6,8 @@ interface TopBarProps {
 
 const TopBar: React.FC<TopBarProps> = ({titleName}) => {
     return (
-        <div className="px-4 py-2 border-b border-gray-200 shadow-md">
-            <div className="font-bold">
+        <div className="px-4 py-4 border-b border-gray-200 shadow-md">
+            <div className="font-bold text-xl">
                 {titleName}
             </div>
         </div>
