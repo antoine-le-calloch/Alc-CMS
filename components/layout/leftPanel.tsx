@@ -11,13 +11,11 @@ const LeftPanel = () => {
             </Link>
             <div className="flex flex-col items-center gap-4 text-center text-xl mx-2">
                 <Link href={"/admin/pages"}
-                      className="relative hover:after:w-full after:absolute after:-bottom-0 after:left-0 after:bg-black 
-                        after:h-0.5 after:transition-all after:duration-500 after:ease-in-out after:w-0">
+                      className="hover:text-gray-800 duration-500 ease-in-out">
                     PAGES
                 </Link>
                 <Link href={"/admin/components"}
-                        className="relative hover:after:w-full after:absolute after:-bottom-0 after:left-0 after:bg-black 
-                        after:h-0.5 after:transition-all after:duration-500 after:ease-in-out after:w-0">
+                      className="hover:text-gray-800 duration-500 ease-in-out">
                     COMPONENTS
                 </Link>
             </div>
