@@ -29,7 +29,7 @@ export default function AdminPage() {
             <TopBar titleName={"Dashboard"}/>
             <div className="container pt-6">
                 <div className="flex justify-around text-center">
-                    <div>
+                    <div className="flex flex-col items-center">
                         <h1 className="mb-4">
                             PAGES
                         </h1>
@@ -37,11 +37,11 @@ export default function AdminPage() {
                             <Loading/> : <DashboardList items={pages} itemLink="pages"/>
                         }
                     </div>
-                    <div>
+                    <div className="flex flex-col items-center">
                         <h1 className="mb-4">
                             BLOCKS
                         </h1>
-                        { blocks === null ?
+                        {blocks === null ?
                             <Loading/> : <DashboardList items={blocks} itemLink="blocks"/>
                         }
                     </div>
