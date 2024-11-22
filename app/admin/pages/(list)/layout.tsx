@@ -3,7 +3,7 @@ import TopBar from "@/components/layout/topBar";
 
 export default function DashboardLayout({children}: {
     children: React.ReactNode
-}) {  
+}) {
     return (
         <section>
             <TopBar titleName={"Pages management"}/>

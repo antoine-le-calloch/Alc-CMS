@@ -30,8 +30,7 @@ export default function EditPage({ params }: { params: { id: string } }) {
             body: JSON.stringify({ id: params.id, title: page.title })
         });
         if (response.ok) {
-            setPage({ title: "" });
-            alert("Page successfully edited !");
+            alert("Page successfully save !");
         }else{
             console.log(response)
         }
@@ -39,24 +38,28 @@ export default function EditPage({ params }: { params: { id: string } }) {
     
     return (
         <div>
-            <div className="flex justify-between items-center py-2 mb-4">
-                <h2>
-                    Page edit
-                </h2>
-            </div>
             <div>
                 <div className="flex flex-col mb-4">
+                    <div className="font-bold text-sm">
+                        Title
+                    </div>
                     <input
                         type="text"
                         value={page.title}
-                        onChange={(e) => setPage({ title: e.target.value })}
+                        onChange={(e) => setPage({title: e.target.value})}
                         placeholder="Title"
-                        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
+                        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-[250px]
                         focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
                     />
                 </div>
+                <div className="flex flex-col mb-4">
+                    <div className="font-bold text-sm">
+                        Content
+                    </div>
+                    ...
+                </div>
                 <Button onClick={handleSubmit} type="submit">
-                    Edit
+                    Save
                 </Button>
             </div>
         </div>

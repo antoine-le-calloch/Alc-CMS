@@ -26,13 +26,11 @@ export default function NewPagePage() {
     
     return (
         <div>
-            <div className="flex justify-between items-center py-2 mb-4">
-                <h2>
-                    New page creation
-                </h2>
-            </div>
             <div>
                 <div className="flex flex-col mb-4">
+                    <div>
+                        Title
+                    </div>
                     <input
                         type="text"
                         value={title}
