@@ -1,6 +1,6 @@
 const Loading = () => {
     return (
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"/>
+        <div className="rounded-full h-10 w-10 border-4 border-gray-100 border-t-4 border-t-blue-400 animate-spin"/>
     );
 };
 
