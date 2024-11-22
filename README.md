@@ -1,6 +1,6 @@
 # Developer Guide
 
-This guide provide instructions, standards, and best practices 
+This guide provides instructions, standards, and best practices 
 to ensure effective collaboration and high-quality code.
 
 ## 1. Environment Setup
