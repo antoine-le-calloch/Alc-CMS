@@ -7,7 +7,7 @@ import Loading from "@/components/utils/loading";
 
 export default function AdminPage() {
     const [pages, setPages] = useState(null)
-    const [components, setComponents] = useState(null)
+    const [blocks, setBlocks] = useState(null)
 
     useEffect(() => {
         async function fetchPages() {
@@ -15,13 +15,13 @@ export default function AdminPage() {
             let data = await res.json()
             setPages(data)
         }
-        async function fetchComponents() {
-            let res = await fetch('/api/components')
+        async function fetchBlocks() {
+            let res = await fetch('/api/blocks')
             let data = await res.json()
-            setComponents(data)
+            setBlocks(data)
         }
         fetchPages().then()
-        fetchComponents().then()
+        fetchBlocks().then()
     }, [])
     
     return (
@@ -39,10 +39,10 @@ export default function AdminPage() {
                     </div>
                     <div>
                         <h1 className="mb-4">
-                            COMPONENTS
+                            BLOCKS
                         </h1>
-                        { components === null ?
-                            <Loading/> : <DashboardList items={components} itemLink="components"/>
+                        { blocks === null ?
+                            <Loading/> : <DashboardList items={blocks} itemLink="blocks"/>
                         }
                     </div>
                 </div>

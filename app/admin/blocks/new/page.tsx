@@ -3,12 +3,12 @@
 import React, {useState} from 'react';
 import Button from "@/components/utils/button";
 
-export default function NewComponentPage() {
+export default function NewBlockPage() {
     const [title, setTitle] = useState("")
     const [html, setHtml] = useState("")
 
     const handleSubmit = async () => {
-        const response = await fetch('/api/components', {
+        const response = await fetch('/api/blocks', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -21,9 +21,9 @@ export default function NewComponentPage() {
         if (response.ok) {
             setTitle("");
             setHtml("");
-            alert("New component successfully created !");
+            alert("New block successfully created !");
         }else{
-            alert("Error creating this component !");
+            alert("Error creating this block !");
         }
     }
     

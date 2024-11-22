@@ -15,9 +15,9 @@ const LeftPanel = () => {
                       className="hover:text-gray-800 duration-500 ease-in-out">
                     PAGES
                 </Link>
-                <Link href={"/admin/components"}
+                <Link href={"/admin/blocks"}
                       className="hover:text-gray-800 duration-500 ease-in-out">
-                    COMPONENTS
+                    BLOCKS
                 </Link>
             </div>
             <div className="h-[70px] flex items-center">

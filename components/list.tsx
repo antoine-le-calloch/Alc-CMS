@@ -1,8 +1,8 @@
-import Button from "@/components/utils/button";
-import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import React from "react";
 import Link from "next/link";
+import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import Loading from "@/components/utils/loading";
+import Button from "@/components/utils/button";
 
 type Item = {
     title: string;

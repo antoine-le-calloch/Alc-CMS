@@ -6,7 +6,7 @@ export default function DashboardLayout({children}: {
 }) {  
     return (
         <section>
-            <TopBar titleName={"Components creation"}/>
+            <TopBar titleName={"Block creation"}/>
             <div className="container p-4">
                 {children}
             </div>
