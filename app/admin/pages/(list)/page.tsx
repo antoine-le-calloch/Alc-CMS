@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useEffect, useState} from 'react';
-import List from "@/components/list";
+import LinearList from "@/components/list/linearList";
 
 export default function PagesPage() {
     const [pages, setPages] = useState(null)
@@ -16,6 +16,6 @@ export default function PagesPage() {
     }, [])
 
     return (
-        <List items={pages} newItemLink={'/admin/pages/new'}/>
+        <LinearList items={pages} newItemLink={'/admin/pages/new'}/>
     )
 };

@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import TopBar from "@/components/layout/topBar";
-import DashboardList from "@/components/dashboardList";
+import PillList from "@/components/list/pillList";
 import Loading from "@/components/utils/loading";
 
 export default function AdminPage() {
@@ -34,7 +34,7 @@ export default function AdminPage() {
                             PAGES
                         </h1>
                         { pages === null ? 
-                            <Loading/> : <DashboardList items={pages} itemLink="pages"/>
+                            <Loading/> : <PillList items={pages} itemLink="pages"/>
                         }
                     </div>
                     <div className="flex flex-col items-center">
@@ -42,7 +42,7 @@ export default function AdminPage() {
                             BLOCKS
                         </h1>
                         {blocks === null ?
-                            <Loading/> : <DashboardList items={blocks} itemLink="blocks"/>
+                            <Loading/> : <PillList items={blocks} itemLink="blocks"/>
                         }
                     </div>
                 </div>

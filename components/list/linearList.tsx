@@ -14,7 +14,7 @@ interface ListProps {
     newItemLink: string;
 }
 
-const List: React.FC<ListProps> = ({items, newItemLink}) => {
+const LinearList: React.FC<ListProps> = ({items, newItemLink}) => {
     return (
         <div>
             <div className="flex justify-between items-center py-2">
@@ -54,4 +54,4 @@ const List: React.FC<ListProps> = ({items, newItemLink}) => {
     );
 };
 
-export default List;
+export default LinearList;

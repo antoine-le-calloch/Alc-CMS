@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useEffect, useState} from 'react';
-import List from "@/components/list";
+import LinearList from "@/components/list/linearList";
 
 export default function BlocksPage() {
     const [blocks, setBlocks] = useState(null)
@@ -17,6 +17,6 @@ export default function BlocksPage() {
     }, [])
 
     return (
-        <List items={blocks} newItemLink={'/admin/blocks/new'}/>
+        <LinearList items={blocks} newItemLink={'/admin/blocks/new'}/>
     )
 };
