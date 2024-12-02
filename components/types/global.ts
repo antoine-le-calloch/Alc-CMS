@@ -7,5 +7,6 @@ interface Block {
 // structure of the page object
 interface Page {
     title: string;
+    link: string;
     blocks: Block[];
 }
