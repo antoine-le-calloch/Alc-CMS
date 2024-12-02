@@ -2,6 +2,7 @@
 interface Item {
     id: number;
     title: string;
+    info: string;
 }
 
 // structure of the blocks object

@@ -4,11 +4,6 @@ import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import Loading from "@/components/utils/loading";
 import Button from "@/components/utils/button";
 
-type Item = {
-    title: string;
-    infos: string;
-};
-
 interface ListProps {
     items: Item[] | null;
     newItemLink: string;
@@ -35,7 +30,7 @@ const LinearList: React.FC<ListProps> = ({items, newItemLink}) => {
                     items.map((item: Item, index: number) => (
                         <div key={index} className="flex items-center justify-between border-b border-gray-200 p-4">
                             <div className="font-bold">{item.title}</div>
-                            <div className="font-bold">{item.infos}</div>
+                            <div className="font-bold">{item.info}</div>
                             <div className="flex items-center">
                                 <Button onClick={() => {
                                 }} className="bg-transparent border-none">
