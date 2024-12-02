@@ -2,10 +2,14 @@
 
 import React, {useEffect, useState} from 'react';
 import Button from "@/components/utils/button";
+import PageForm from "@/components/form/pageForm";
 
 export default function EditPage({ params }: { params: { id: string } }) {
-    const [page, setPage] = useState({ title: "" });
-
+    const [page, setPage] = useState<Page>({
+        title: '',
+        blocks: [],
+    });
+    
     useEffect(() => {
         async function fetchPage(id: string) {
             const response = await fetch(`/api/pages/${id}`);
@@ -38,30 +42,10 @@ export default function EditPage({ params }: { params: { id: string } }) {
     
     return (
         <div>
-            <div>
-                <div className="flex flex-col mb-4">
-                    <div className="font-bold text-sm">
-                        Title
-                    </div>
-                    <input
-                        type="text"
-                        value={page.title}
-                        onChange={(e) => setPage({title: e.target.value})}
-                        placeholder="Title"
-                        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-[250px]
-                        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
-                    />
-                </div>
-                <div className="flex flex-col mb-4">
-                    <div className="font-bold text-sm">
-                        Content
-                    </div>
-                    ...
-                </div>
-                <Button onClick={handleSubmit} type="submit">
-                    Save
-                </Button>
-            </div>
+            <PageForm page={page} setPage={setPage} />
+            <Button onClick={handleSubmit} type="submit">
+                Save
+            </Button>
         </div>
     )
 };
