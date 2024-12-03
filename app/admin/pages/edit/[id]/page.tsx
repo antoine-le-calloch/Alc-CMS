@@ -7,6 +7,7 @@ import PageForm from "@/components/form/pageForm";
 export default function EditPage({ params }: { params: { id: string } }) {
     const [page, setPage] = useState<Page>({
         title: '',
+        link: '',
         blocks: [],
     });
     
