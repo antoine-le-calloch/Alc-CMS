@@ -24,18 +24,6 @@ export async function POST(request: Request) {
     }
 }
 
-export async function PUT(request: Request) {
-    try {
-        const data = await request.json();
-        const { id, ...rest } = data;
-        await setDoc(doc(db, 'pages', id), rest, { merge: true });
-        return NextResponse.json({}, { status: 200 });
-    } catch (error) {
-        let message = error instanceof Error ? error.message : String(error);
-        return NextResponse.json({ error: message }, { status: 500 });
-    }
-}
-
 export async function DELETE(request: Request) {
     try {
         const data = await request.json();
