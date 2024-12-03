@@ -3,6 +3,7 @@
 import React, {useState} from "react";
 import PlusButton from "@/components/utils/button/plusButton";
 import Button from "@/components/utils/button";
+import {savePage} from "@/components/services/savePage";
 
 interface PageFormProps {
     pageToEdit: Page | null;
@@ -15,31 +16,15 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
         link: '',
         blocks: []
     });
-    let isEdit = pageToEdit !== null;
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('/api/pages', {
-                method: isEdit ? 'PUT' : 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(page),
-            });
-
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                console.error("API Error:", errorMessage);
-                alert(`Failed to save the page: ${response.status} ${response.statusText}`);
-                return;
-            }
-            
-            alert("Page saved successfully!");
-        } catch (error) {
-            console.error("Unexpected error:", error);
-            alert("An unexpected error occurred. Please try again.");
+            await savePage(page, page.id !== null);
+        } catch (error: any) {
+            console.error("Error:", error);
+            alert(error.message);
         }
-    }
+    };
     
     return (
         <div>
