@@ -2,12 +2,12 @@ import React from 'react';
 import Link from "next/link";
 import PlusButton from "@/components/utils/button/plusButton";
 
-interface DashboardListProps {
+interface PillListProps {
     items: Item[];
     itemLink: string;
 }
 
-const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
+const PillList: React.FC<PillListProps> = ({items, itemLink}) => {
     return (
         <div>
             <div className="flex flex-col">
@@ -28,4 +28,4 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
     );
 };
 
-export default DashboardList;
+export default PillList;
