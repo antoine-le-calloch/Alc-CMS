@@ -23,7 +23,7 @@ const LeftPanel = () => {
                 </Link>
             </div>
             <div className="h-[70px] flex items-center">
-                <Link href="/">
+                <Link href={"/admin/settings"}>
                     <Cog6ToothIcon className="size-7 rotate-on-hover"/>
                 </Link>
             </div>
