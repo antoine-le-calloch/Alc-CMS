@@ -1,4 +1,4 @@
-import PageForm from "@/components/form/page/pageForm";
+import PageForm from "@/components/form/pageForm";
 
 export default function NewPagePage() {
     return (

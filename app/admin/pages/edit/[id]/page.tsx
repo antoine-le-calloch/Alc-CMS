@@ -1,4 +1,4 @@
-import PageForm from "@/components/form/page/pageForm";
+import PageForm from "@/components/form/pageForm";
 
 export default async function EditPage({ params }: { params: { id: string } }) {
     let data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pages/${params.id}`)
