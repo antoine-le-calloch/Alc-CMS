@@ -1,12 +1,26 @@
-import React from "react";
+"use client";
+
+import React, {useState} from "react";
 import PlusButton from "@/components/utils/button/plusButton";
+import Button from "@/components/utils/button";
 
 interface PageFormProps {
-    page: Page;
-    setPage: React.Dispatch<React.SetStateAction<Page>>;
+    pageToEdit: Page;
 }
 
-const pageForm: React.FC<PageFormProps> = ({page, setPage}) => {
+const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
+    const [page, setPage] = useState<Page>(pageToEdit);
+    
+    const handleSubmit = async () => {
+        await fetch(`/api/pages/${page.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(page)
+        })
+    }
+    
     return (
         <div>
             <div className="flex mb-4">
@@ -52,7 +66,10 @@ const pageForm: React.FC<PageFormProps> = ({page, setPage}) => {
                     <PlusButton/>
                 </div>
             </div>
+            <Button onClick={handleSubmit} type="submit">
+                Save
+            </Button>
         </div>
     );
 }
-export default pageForm;
+export default PageForm;
