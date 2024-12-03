@@ -1,6 +1,6 @@
 import React from 'react';
-import {PlusIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
+import PlusButton from "@/components/utils/button/plusButton";
 
 interface DashboardListProps {
     items: Item[];
@@ -21,9 +21,7 @@ const DashboardList: React.FC<DashboardListProps> = ({items, itemLink}) => {
             </div>
             <div>
                 <a href={`/admin/${itemLink}/new`}>
-                    <PlusIcon className="h-6 w-6 inline-flex border border-black rounded-full 
-                    hover:rotate-[180deg] hover:scale-110 transition duration-500"
-                   />
+                    <PlusButton/>
                 </a>
             </div>
         </div>

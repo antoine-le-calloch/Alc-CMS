@@ -1,5 +1,5 @@
 import React from "react";
-import {PlusIcon} from "@heroicons/react/24/solid";
+import PlusButton from "@/components/utils/button/plusButton";
 
 interface PageFormProps {
     page: Page;
@@ -49,9 +49,7 @@ const pageForm: React.FC<PageFormProps> = ({page, setPage}) => {
                     ))}
                 </div>
                 <div className="flex justify-center items-center">
-                <PlusIcon className="h-6 w-6 inline-flex border border-black rounded-full 
-                    hover:rotate-[180deg] hover:scale-110 transition duration-500"
-                    />
+                    <PlusButton/>
                 </div>
             </div>
         </div>
