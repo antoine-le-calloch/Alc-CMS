@@ -11,7 +11,6 @@ interface PageFormProps {
 
 const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     const [page, setPage] = useState<Page>(pageToEdit || {
-        id: null,
         title: '',
         link: '',
         blocks: []
@@ -19,7 +18,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
 
     const handleSubmit = async () => {
         try {
-            await savePage(page, page.id !== null);
+            await savePage(page, !!pageToEdit);
         } catch (error: any) {
             console.error("Error:", error);
             alert(error.message);
