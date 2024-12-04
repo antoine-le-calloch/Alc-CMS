@@ -18,6 +18,9 @@
   .rotate-on-hover {
     @apply hover:rotate-[180deg] hover:scale-110 transition duration-700;
   }
+  .zoom-on-hover {
+    @apply hover:scale-105 hover:shadow-md transition duration-500;
+  }
 }
 
 body {
