@@ -12,9 +12,8 @@ const PillList: React.FC<PillListProps> = ({items, itemLink}) => {
         <div>
             <div className="flex flex-col">
                 {items.length > 0 && items.map((item: Item) => (
-                        <Link key={item.id} className="border border-gray-300 rounded-lg py-2 px-12 mb-2 
-                        hover:scale-105 hover:shadow-md transition duration-500"
-                                href={`/admin/${itemLink}/edit/${item.id}`}>
+                        <Link key={item.id} href={`/admin/${itemLink}/edit/${item.id}`}
+                              className="border border-gray-300 rounded-lg py-2 px-12 mb-2 zoom-on-hover">
                             {item.title}
                         </Link>
                 ))}
