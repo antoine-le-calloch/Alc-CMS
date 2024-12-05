@@ -20,6 +20,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     const handleSubmit = async () => {
         try {
             await savePage(page, !!pageToEdit);
+            window.location.href = '/admin/';
         } catch (error: any) {
             console.error("Error:", error);
             alert(error.message);
