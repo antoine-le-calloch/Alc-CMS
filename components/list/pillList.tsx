@@ -18,7 +18,7 @@ const PillList: React.FC<PillListProps> = ({items, itemLink}) => {
                         </Link>
                 ))}
             </div>
-            <div>
+            <div className="py-1">
                 <a href={`/admin/${itemLink}/new`}>
                     <PlusButton/>
                 </a>
