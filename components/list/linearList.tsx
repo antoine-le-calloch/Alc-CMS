@@ -3,20 +3,40 @@ import Link from "next/link";
 import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import Loading from "@/components/utils/loading";
 import Button from "@/components/utils/button";
+import {handleAction} from "next/dist/server/app-render/action-handler";
 
 interface ListProps {
     items: Item[] | null;
-    newItemLink: string;
+    itemLink: string;
 }
 
-const LinearList: React.FC<ListProps> = ({items, newItemLink}) => {
+const LinearList: React.FC<ListProps> = ({items, itemLink}) => {
+    
+    const handleDelete = (name: string, id: string, itemLink: string) => async () => {
+        if (!confirm(`Are you sure you want to delete ${name} from ${itemLink}?`)) {
+            return;
+        }
+        try {
+            await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${itemLink}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            window.location.reload();
+        } catch (error: any) {
+            console.error("Error:", error);
+            alert(error.message);
+        }
+    };
+    
     return (
         <div>
             <div className="flex justify-between items-center py-2">
                 <h2>
                     List
                 </h2>
-                <Link href={newItemLink}
+                <Link href={`admin/${itemLink}/new`}
                       className="rounded bg-blue-300 hover:bg-blue-400 py-1 px-2">
                     New
                 </Link>
@@ -32,12 +52,12 @@ const LinearList: React.FC<ListProps> = ({items, newItemLink}) => {
                             <div className="font-bold">{item.title}</div>
                             <div className="font-bold">{item.info}</div>
                             <div className="flex items-center">
-                                <Button onClick={() => {
-                                }} className="bg-transparent border-none">
-                                    <PencilSquareIcon className="h-6 w-6 ml-2 text-blue-400"/>
-                                </Button>
-                                <Button onClick={() => {
-                                }} className="bg-transparent border-none">
+                                <Link href={`admin/${itemLink}/edit/${item.id}`}>
+                                    <Button className="bg-transparent border-none">
+                                        <PencilSquareIcon className="h-6 w-6 ml-2 text-blue-400"/>
+                                    </Button>
+                                </Link>
+                                <Button onClick={handleDelete(item.title, item.id, itemLink)} className="bg-transparent border-none">
                                     <MinusCircleIcon className="h-6 w-6 ml-2 text-red-400"/>
                                 </Button>
                             </div>
