@@ -17,6 +17,6 @@ export default function BlocksPage() {
     }, [])
 
     return (
-        <LinearList items={blocks} newItemLink={'/admin/blocks/new'}/>
+        <LinearList items={blocks} itemLink={'blocks'}/>
     )
 };

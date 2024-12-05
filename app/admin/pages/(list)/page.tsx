@@ -16,6 +16,6 @@ export default function PagesPage() {
     }, [])
 
     return (
-        <LinearList items={pages} newItemLink={'/admin/pages/new'}/>
+        <LinearList items={pages} itemLink={'pages'}/>
     )
 };
