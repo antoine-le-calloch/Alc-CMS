@@ -91,7 +91,9 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         ))}
                     </div>
                     <div className="flex justify-center items-center">
-                        <PlusButton/>
+                        <Button onClick={addBlock} type="button">
+                            <PlusButton/>    
+                        </Button>
                     </div>
                 </div>
             </div>
