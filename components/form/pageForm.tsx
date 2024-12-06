@@ -16,6 +16,19 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
         link: '',
         blocks: []
     });
+    
+    const addBlock = () => {
+        setPage({
+            ...page,
+            blocks: [
+                ...page.blocks,
+                {
+                    name: 'New block',
+                    data: {}
+                }
+            ]
+        });
+    };
 
     const handleSubmit = async () => {
         try {
