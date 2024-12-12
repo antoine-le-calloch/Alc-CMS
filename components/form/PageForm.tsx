@@ -16,6 +16,13 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
         link: '',
         blocks: []
     });
+    const [openPopup, setOpenPopup] = useState(false);
+    const [blockTypes, setBlockTypes] = useState<BlockType[]>([]);
+    
+    const openPopupHandler = () => {
+        // retreive all blocks type
+        setOpenPopup(!openPopup);
+    }
     
     const addBlock = () => {
         setPage({
@@ -88,7 +95,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         ))}
                     </div>
                     <div className="flex justify-center items-center">
-                        <button onClick={addBlock} type="button">
+                        <button onClick={openPopupHandler} type="button">
                             <PlusIcon className="plus-icon-style"/>
                         </button>
                     </div>
@@ -103,6 +110,22 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                 <Button onClick={handleSubmit} type="submit" className="bg-green-500">
                     Save
                 </Button>
+            </div>
+            <div className={`${openPopup ? 'block' : 'hidden'} w-full h-full fixed top-0 left-0 bg-black bg-opacity-50`}>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div>
+                        Choose block type
+                    </div>
+                    <div>
+                        {blockTypes.map((blockType) => (
+                            <div key={blockType.id}>
+                                <button onClick={addBlock} type="button">
+                                    {blockType.name}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     );
