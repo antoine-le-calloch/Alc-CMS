@@ -80,9 +80,6 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                     Content
                 </h2>
                 <div className="flex flex-col p-6">
-                    <div className="text-sm">
-                        Block list
-                    </div>
                     <div>
                         {page.blocks && page.blocks.map((block, index) => (
                             <div key={index} className="border border-gray-300 rounded-lg p-2 mb-2">
