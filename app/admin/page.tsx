@@ -5,7 +5,7 @@ import TopBar from "@/components/layout/TopBar";
 import PillList from "@/components/list/PillList";
 import Loading from "@/components/utils/Loading";
 
-export default function AdminPage() {
+export default function HomePage() {
     const [pages, setPages] = useState(null)
     const [blocks, setBlocks] = useState(null)
 
