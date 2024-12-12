@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from "@/components/utils/button/Button";
 import {savePage} from "@/components/services/SavePage";
 import {PlusIcon, XMarkIcon} from "@heroicons/react/16/solid";
+import Loading from "@/components/utils/Loading";
 
 interface PageFormProps {
     pageToEdit: Page | null;
@@ -125,7 +126,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         <XMarkIcon/>
                     </button>
                     <div className="flex justify-center flex-wrap gap-2 w-full p-4">
-                        {blockTypes.map((blockType) => (
+                        {loading ? <Loading/> : blockTypes.map((blockType) => (
                             <button key={blockType.id} onClick={() => addBlock(blockType)} 
                                         className="border border-gray-300 rounded-lg py-4 px-2 w-1/3
                                         hover:scale-105 duration-500">
