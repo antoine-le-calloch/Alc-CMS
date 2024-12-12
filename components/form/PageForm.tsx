@@ -29,7 +29,8 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
             setBlockTypes(data);
             setLoading(false);
         }
-        fetchBlocks().then()
+        if (blockTypes.length == 0)
+            fetchBlocks().then()
         setOpenPopup(!openPopup);
     }
     
