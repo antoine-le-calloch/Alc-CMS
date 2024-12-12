@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import Link from "next/link";
 import Button from "@/components/utils/button/Button";
 import {savePage} from "@/components/services/SavePage";
-import {PlusIcon, XMarkIcon} from "@heroicons/react/16/solid";
+import {PlusIcon, XMarkIcon} from "@heroicons/react/24/solid";
 import Loading from "@/components/utils/Loading";
 
 interface PageFormProps {
@@ -122,13 +122,13 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                     <div className="text-lg font-bold rounded text-center p-3 w-full bg-amber-50">
                         Choose block type
                     </div>
-                    <button className="absolute right-2 top-2" onClick={() => setOpenPopup(false)}>
-                        <XMarkIcon/>
+                    <button className="absolute right-2 top-2 hover:scale-110 duration-300" onClick={() => setOpenPopup(false)}>
+                        <XMarkIcon width={24} height={24}/>
                     </button>
                     <div className="flex justify-center flex-wrap gap-2 w-full p-4">
                         {loading ? <Loading/> : blockTypes.map((blockType) => (
                             <button key={blockType.id} onClick={() => addBlock(blockType)} 
-                                        className="border border-gray-300 rounded-lg py-4 px-2 w-1/3
+                                        className="border border-gray-300 shadow rounded-lg py-4 px-2 w-1/3
                                         hover:scale-105 duration-500">
                                 {blockType.title}
                             </button>
