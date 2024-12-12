@@ -1,10 +1,10 @@
 "use client";
 
 import React, {useState} from "react";
-import PlusButton from "@/components/utils/button/PlusButton";
 import Button from "@/components/utils/button/Button";
 import {savePage} from "@/components/services/SavePage";
 import Link from "next/link";
+import {PlusIcon} from "@heroicons/react/16/solid";
 
 interface PageFormProps {
     pageToEdit: Page | null;
@@ -91,9 +91,9 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         ))}
                     </div>
                     <div className="flex justify-center items-center">
-                        <Button onClick={addBlock} type="button">
-                            <PlusButton/>    
-                        </Button>
+                        <button onClick={addBlock} type="button">
+                            <PlusIcon className="plus-icon-style"/>
+                        </button>
                     </div>
                 </div>
             </div>

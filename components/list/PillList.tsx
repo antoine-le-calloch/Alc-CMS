@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import PlusButton from "@/components/utils/button/PlusButton";
+import {PlusIcon} from "@heroicons/react/16/solid";
 
 interface PillListProps {
     items: Item[];
@@ -20,7 +20,7 @@ const PillList: React.FC<PillListProps> = ({items, itemLink}) => {
             </div>
             <div className="py-1">
                 <a href={`/admin/${itemLink}/new`}>
-                    <PlusButton/>
+                    <PlusIcon className="plus-icon-style"/>
                 </a>
             </div>
         </div>
