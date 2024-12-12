@@ -1,10 +1,10 @@
 "use client";
 
 import React, {useState} from "react";
+import Link from "next/link";
 import Button from "@/components/utils/button/Button";
 import {savePage} from "@/components/services/SavePage";
-import Link from "next/link";
-import {PlusIcon} from "@heroicons/react/16/solid";
+import {PlusIcon, XMarkIcon} from "@heroicons/react/16/solid";
 
 interface PageFormProps {
     pageToEdit: Page | null;
@@ -17,24 +17,27 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
         blocks: []
     });
     const [openPopup, setOpenPopup] = useState(false);
-    const [blockTypes, setBlockTypes] = useState<BlockType[]>([]);
+    const [blockTypes, setBlockTypes] = useState<Block[]>([]);
+    const [loading, setLoading] = useState(false);
     
     const openPopupHandler = () => {
-        // retreive all blocks type
+        async function fetchBlocks() {
+            setLoading(true);
+            let res = await fetch('/api/blocks');
+            let data = await res.json()
+            setBlockTypes(data);
+            setLoading(false);
+        }
+        fetchBlocks().then()
         setOpenPopup(!openPopup);
     }
     
-    const addBlock = () => {
+    const addBlock = (block: Block) => {
         setPage({
             ...page,
-            blocks: [
-                ...page.blocks,
-                {
-                    name: 'New block',
-                    data: {}
-                }
-            ]
+            blocks: [...page.blocks, block]
         });
+        setOpenPopup(false);
     };
 
     const handleSubmit = async () => {
@@ -46,6 +49,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
             alert(error.message);
         }
     };
+    console.log(blockTypes);
     
     return (
         <div>
@@ -89,8 +93,8 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                 <div className="flex flex-col p-6">
                     <div>
                         {page.blocks && page.blocks.map((block, index) => (
-                            <div key={index} className="border border-gray-300 rounded-lg p-2 mb-2">
-                                {block.name}
+                            <div key={index} className="border border-gray-300 bg-white rounded-lg p-2 mb-2">
+                                {block.title}
                             </div>
                         ))}
                     </div>
@@ -112,17 +116,21 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                 </Button>
             </div>
             <div className={`${openPopup ? 'block' : 'hidden'} w-full h-full fixed top-0 left-0 bg-black bg-opacity-50`}>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div>
+                <div className="absolute bg-white shadow-md max-w-lg w-full rounded
+                top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                    <div className="text-lg font-bold rounded text-center p-3 w-full bg-amber-50">
                         Choose block type
                     </div>
-                    <div>
+                    <button className="absolute right-2 top-2" onClick={() => setOpenPopup(false)}>
+                        <XMarkIcon/>
+                    </button>
+                    <div className="flex justify-center flex-wrap gap-2 w-full p-4">
                         {blockTypes.map((blockType) => (
-                            <div key={blockType.id}>
-                                <button onClick={addBlock} type="button">
-                                    {blockType.name}
-                                </button>
-                            </div>
+                            <button key={blockType.id} onClick={() => addBlock(blockType)} 
+                                        className="border border-gray-300 rounded-lg py-4 px-2 w-1/3
+                                        hover:scale-105 duration-500">
+                                {blockType.title}
+                            </button>
                         ))}
                     </div>
                 </div>
