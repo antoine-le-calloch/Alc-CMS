@@ -1,9 +1,9 @@
 "use client";
 
 import React, {useState} from "react";
-import PlusButton from "@/components/utils/button/plusButton";
-import Button from "@/components/utils/button";
-import {savePage} from "@/components/services/savePage";
+import PlusButton from "@/components/utils/button/PlusButton";
+import Button from "@/components/utils/button/Button";
+import {savePage} from "@/components/services/SavePage";
 import Link from "next/link";
 
 interface PageFormProps {

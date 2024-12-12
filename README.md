@@ -47,3 +47,7 @@ firebase emulators:start --import=./dump --project project-id
 - Use container from tailwindcss for each section.
 
 ### Naming Conventions
+- Use camelCase for variable names.
+- Use PascalCase for function names.
+- Use kebab-case files and folders in the `app` directory.
+- Use PascalCase for component file names.

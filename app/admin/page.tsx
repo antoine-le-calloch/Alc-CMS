@@ -1,9 +1,9 @@
 "use client";
 
 import React, {useEffect, useState} from 'react';
-import TopBar from "@/components/layout/topBar";
-import PillList from "@/components/list/pillList";
-import Loading from "@/components/utils/loading";
+import TopBar from "@/components/layout/TopBar";
+import PillList from "@/components/list/PillList";
+import Loading from "@/components/utils/Loading";
 
 export default function AdminPage() {
     const [pages, setPages] = useState(null)

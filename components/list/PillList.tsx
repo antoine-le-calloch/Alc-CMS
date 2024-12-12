@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import PlusButton from "@/components/utils/button/plusButton";
+import PlusButton from "@/components/utils/button/PlusButton";
 
 interface PillListProps {
     items: Item[];

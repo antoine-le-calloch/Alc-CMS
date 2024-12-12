@@ -1,9 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import {MinusCircleIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import Loading from "@/components/utils/loading";
-import Button from "@/components/utils/button";
-import {handleAction} from "next/dist/server/app-render/action-handler";
+import Loading from "@/components/utils/Loading";
+import Button from "@/components/utils/button/Button";
 
 interface ListProps {
     items: Item[] | null;
