@@ -13,7 +13,7 @@ const PillList: React.FC<PillListProps> = ({items, itemLink}) => {
             <div className="flex flex-col">
                 {items.length > 0 && items.map((item: Item) => (
                         <Link key={item.id} href={`/admin/${itemLink}/edit/${item.id}`}
-                              className="border border-gray-300 rounded-lg py-2 px-12 mb-2 zoom-on-hover">
+                              className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 zoom-on-hover">
                             {item.title}
                         </Link>
                 ))}

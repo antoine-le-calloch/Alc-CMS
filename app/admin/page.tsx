@@ -30,7 +30,7 @@ export default function HomePage() {
             <div className="container pt-6">
                 <div className="flex justify-around text-center">
                     <div className="flex flex-col items-center">
-                        <h2 className="mb-4">
+                        <h2 className="mb-4 font-bold">
                             PAGES
                         </h2>
                         { pages === null ? 
@@ -38,7 +38,7 @@ export default function HomePage() {
                         }
                     </div>
                     <div className="flex flex-col items-center">
-                        <h2 className="mb-4">
+                        <h2 className="mb-4 font-bold">
                             BLOCKS
                         </h2>
                         {blocks === null ?
