@@ -30,17 +30,17 @@ export default function AdminPage() {
             <div className="container pt-6">
                 <div className="flex justify-around text-center">
                     <div className="flex flex-col items-center">
-                        <h1 className="mb-4">
+                        <h2 className="mb-4">
                             PAGES
-                        </h1>
+                        </h2>
                         { pages === null ? 
                             <Loading/> : <PillList items={pages} itemLink="pages"/>
                         }
                     </div>
                     <div className="flex flex-col items-center">
-                        <h1 className="mb-4">
+                        <h2 className="mb-4">
                             BLOCKS
-                        </h1>
+                        </h2>
                         {blocks === null ?
                             <Loading/> : <PillList items={blocks} itemLink="blocks"/>
                         }

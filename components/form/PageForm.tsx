@@ -42,8 +42,8 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     
     return (
         <div>
-            <div className="mb-2 px-3 py-2 bg-amber-50 rounded-xl">
-                <h2 className="font-bold text-lg m-0">
+            <div className="mb-2 px-3 py-2 bg-amber-50 rounded-xl shadow-md">
+                <h2 className="font-bold text-lg m-0 text-gray-600">
                     Header
                 </h2>
                 <div className="flex p-6">
@@ -75,8 +75,8 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                     </div>
                 </div>
             </div>
-            <div className="mb-4 px-3 py-2 bg-amber-50 rounded-xl">
-                <h2 className="font-bold text-lg m-0">
+            <div className="mb-4 px-3 py-2 bg-amber-50 rounded-xl shadow-md">
+                <h2 className="font-bold text-lg m-0 text-gray-600">
                     Content
                 </h2>
                 <div className="flex flex-col p-6">
