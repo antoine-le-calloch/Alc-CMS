@@ -8,7 +8,7 @@ const LeftPanel = () => {
         <div className="flex flex-col justify-between items-center bg-slate-900 text-white h-screen p-4 shadow-xl w-[180px]">
             <Link href={"/admin"}
                   className="hover:scale-110 duration-700 ease-in-out">
-                <Image src="/logo/logo_ALC.png" alt="Logo" width={70} height={70}/>
+                <Image src="/logo/logo_alc.png" alt="Logo" width={70} height={70}/>
             </Link>
             <div className="flex flex-col items-center gap-y-4 text-center text-xl mx-2 font-bold">
                 <Link href={"/admin/pages"}

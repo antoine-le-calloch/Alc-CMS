@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useState} from 'react';
-import Button from "@/components/utils/button";
+import Button from "@/components/utils/button/Button";
 
 export default function NewBlockPage() {
     const [title, setTitle] = useState("")
