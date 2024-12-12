@@ -1,7 +1,7 @@
 // structure of the blocks object
 interface Block {
     id?: string;
-    name: string;
+    title: string;
     data: any;
 }
 
