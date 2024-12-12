@@ -7,9 +7,9 @@ interface TopBarProps {
 const TopBar: React.FC<TopBarProps> = ({titleName}) => {
     return (
         <div className="px-4 py-4 border-b border-gray-200 shadow-md mb-2">
-            <div className="font-bold text-xl">
+            <h1 className="font-bold text-xl text-slate-900 uppercase">
                 {titleName}
-            </div>
+            </h1>
         </div>
     );
 };
