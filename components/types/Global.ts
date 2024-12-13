@@ -2,7 +2,7 @@
 interface Block {
     id?: string;
     title: string;
-    data: any;
+    data: string;
 }
 
 // structure of the page object
