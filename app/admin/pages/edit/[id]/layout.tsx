@@ -1,7 +1,7 @@
 import React from 'react';
 import TopBar from "@/components/layout/TopBar";
 
-export default function DashboardLayout({children}: {
+export default function EditPageLayout({children}: {
     children: React.ReactNode
 }) {
     return (
