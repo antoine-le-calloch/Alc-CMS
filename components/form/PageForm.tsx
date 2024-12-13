@@ -51,7 +51,6 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
             alert(error.message);
         }
     };
-    console.log(blockTypes);
     
     return (
         <div>
