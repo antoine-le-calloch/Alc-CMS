@@ -119,16 +119,19 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
             <div className={`${openPopup ? 'block' : 'hidden'} w-full h-full fixed top-0 left-0 bg-black bg-opacity-50`}>
                 <div className="absolute bg-white shadow-md max-w-lg w-full rounded
                 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="text-lg font-bold rounded text-center p-3 w-full bg-amber-50">
-                        Choose block type
+                    <div className="text-white bg-slate-900 w-full rounded-t">
+                        <div className="text-lg font-bold text-center p-3">
+                            Choose block
+                        </div>
+                        <button className="absolute right-2 top-2 hover:scale-110 duration-300 font-bold"
+                                onClick={() => setOpenPopup(false)}>
+                            <XMarkIcon width={24} height={24}/>
+                        </button>
                     </div>
-                    <button className="absolute right-2 top-2 hover:scale-110 duration-300" onClick={() => setOpenPopup(false)}>
-                        <XMarkIcon width={24} height={24}/>
-                    </button>
                     <div className="flex justify-center flex-wrap gap-2 w-full p-4">
                         {loading ? <Loading/> : blockTypes.map((blockType) => (
-                            <button key={blockType.id} onClick={() => addBlock(blockType)} 
-                                        className="border border-gray-300 shadow rounded-lg py-4 px-2 w-1/3
+                            <button key={blockType.id} onClick={() => addBlock(blockType)}
+                                    className="border border-gray-300 shadow rounded-lg py-4 px-2 w-1/3
                                         hover:scale-105 duration-500">
                                 {blockType.title}
                             </button>
