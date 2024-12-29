@@ -108,11 +108,11 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
             </div>
             <div className="flex justify-around">
                 <Link href={'/admin/'}>
-                    <Button type="button" className="bg-red-500">
+                    <Button type="button" className="bg-red-500 text-white">
                         Cancel
                     </Button>
                 </Link>
-                <Button onClick={handleSubmit} type="submit" className="bg-green-500">
+                <Button onClick={handleSubmit} type="submit" className="bg-green-500 text-white">
                     Save
                 </Button>
             </div>
