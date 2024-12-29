@@ -27,7 +27,7 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
     
     return (
         <div>
-            <div className="mb-2 px-3 py-2 bg-amber-50 rounded-xl shadow-md">
+            <div className="mb-2 px-3 py-2 bg-slate-50 rounded-xl shadow-md">
                 <h2 className="font-bold text-lg m-0 text-gray-800">
                     Header
                 </h2>
@@ -45,7 +45,7 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                     />
                 </div>
             </div>
-            <div className="mb-4 px-3 py-2 bg-amber-50 rounded-xl shadow-md">
+            <div className="mb-4 px-3 py-2 bg-slate-50 rounded-xl shadow-md">
                 <h2 className="font-bold text-lg m-0  text-gray-800">
                     Data
                 </h2>
