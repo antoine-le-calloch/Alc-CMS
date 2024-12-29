@@ -7,7 +7,7 @@ export default function AdminLayout({children}: {
     return (
         <div className="flex">
             <LeftPanel/>
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full bg-[#e9e7e2]">
                 {children}
             </div>
         </div>
