@@ -17,7 +17,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
             return NextResponse.json({ error: "Block not found" }, { status: 404 });
         }
 
-        return NextResponse.json({ id: blockSnap.id, ...blockSnap.data() }, { status: 200 });
+        return NextResponse.json({ id: blockSnap.id, variables: blockSnap.data(), ...blockSnap.data() }, { status: 200 });
     } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
         return NextResponse.json({ error: message }, { status: 500 });
