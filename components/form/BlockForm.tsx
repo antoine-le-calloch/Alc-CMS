@@ -12,7 +12,8 @@ interface BlockFormProps {
 const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
     const [block, setBlock] = useState<Block>(blockToEdit || {
         title: '',
-        data: ''
+        html: '',
+        variables: []
     });
 
     const handleSubmit = async () => {
@@ -51,9 +52,9 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 </h2>
                 <div className="p-6">
                     <input type="text"
-                           value={block.data}
-                           placeholder="Data"
-                           onChange={(e) => setBlock({...block, data: e.target.value})} 
+                           value={block.html}
+                           placeholder="Html"
+                           onChange={(e) => setBlock({...block, html: e.target.value})} 
                            className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-[250px]
                            focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
                 </div>
