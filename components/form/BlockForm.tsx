@@ -59,9 +59,11 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 <div className="p-6 pt-2">
                     <div className="flex gap-1 text-sm mb-2">
                         {block.variables.length ? block.variables.map((variable) => (
-                            <div className="border rounded-2xl bg-white px-2 py-1" key={variable}>
+                            <button className="border rounded-2xl bg-white px-2 py-1 relative" key={variable}>
                                 {variable}
-                            </div>
+                                <div className="absolute left-0 top-0 w-full h-full rounded-2xl bg-red-500 
+                                flex justify-center items-center font-bold text-xl opacity-0 hover:opacity-100 duration-300">x</div>
+                            </button>
                         )) : <div className="border border-gray-400 border-dashed rounded-2xl px-2 py-1">No
                             variables</div>}
                         <button onClick={addVariable} type="button">
