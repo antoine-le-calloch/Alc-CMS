@@ -18,7 +18,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
         blocks: []
     });
     const [openPopup, setOpenPopup] = useState(false);
-    const [blockTypes, setBlockTypes] = useState<Block[]>([]);
+    const [blocks, setBlocks] = useState<Block[]>([]);
     const [loading, setLoading] = useState(false);
     
     const openPopupHandler = () => {
@@ -26,10 +26,10 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
             setLoading(true);
             let res = await fetch('/api/blocks');
             let data = await res.json()
-            setBlockTypes(data);
+            setBlocks(data);
             setLoading(false);
         }
-        if (blockTypes.length == 0)
+        if (blocks.length == 0)
             fetchBlocks().then()
         setOpenPopup(!openPopup);
     }
@@ -96,6 +96,17 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         {page.blocks && page.blocks.map((block, index) => (
                             <div key={index} className="border border-gray-300 bg-white rounded-lg p-2 mb-2">
                                 {block.title}
+                                <div>
+                                    {block.variables && block.variables.map((variable) => (
+                                        <input type="text"
+                                               key={variable}
+                                               value={variable}
+                                               placeholder="variable"
+                                               onChange={(e) => { block.variables = [e.target.value] }}
+                                               className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-[250px]
+                                               focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
+                                    ))}
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -129,11 +140,11 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         </button>
                     </div>
                     <div className="flex justify-center flex-wrap gap-2 w-full p-4">
-                        {loading ? <Loading/> : blockTypes.map((blockType) => (
-                            <button key={blockType.id} onClick={() => addBlock(blockType)}
+                        {loading ? <Loading/> : blocks.map((block) => (
+                            <button key={block.id} onClick={() => addBlock(block)}
                                     className="border border-gray-300 shadow rounded-lg py-4 px-2 w-1/3
                                         hover:scale-105 duration-500">
-                                {blockType.title}
+                                {block.title}
                             </button>
                         ))}
                     </div>
