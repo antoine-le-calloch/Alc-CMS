@@ -40,14 +40,14 @@ const LinearList: React.FC<ListProps> = ({items, itemLink}) => {
                     New
                 </Link>
             </div>
-            <div className="flex flex-col border-t border-gray-500">
+            <div className="flex flex-col border-t-2 border-gray-600 px-1">
                 { items === null || items.length === 0 ? (
                     <div className="flex justify-center my-4">
                         { items === null ? <Loading/> : <div>No data</div>}
                     </div>
                 ) : (
                     items.map((item: Item, index: number) => (
-                        <div key={index} className="flex items-center justify-between border-b border-gray-200 p-4">
+                        <div key={index} className="flex items-center justify-between border-b border-gray-400 p-4">
                             <div className="font-bold">{item.title}</div>
                             <div className="font-bold">{item.info}</div>
                             <div className="flex items-center">
