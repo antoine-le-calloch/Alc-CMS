@@ -112,7 +112,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                     </div>
                     <div className="flex justify-center items-center">
                         <button onClick={openPopupHandler} type="button">
-                            <PlusIcon className="plus-icon-style bg-white"/>
+                            <PlusIcon className="plus-icon-style h-6 w-6"/>
                         </button>
                     </div>
                 </div>

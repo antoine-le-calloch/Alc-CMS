@@ -4,7 +4,7 @@
 
 @layer utilities {
   .plus-icon-style{
-    @apply h-6 w-6 inline-flex border border-black rounded-full hover:scale-110 transition duration-700;
+    @apply inline-flex border border-black rounded-full hover:scale-110 transition duration-700 bg-white;
   }
   .rotate-on-hover {
     @apply hover:rotate-[180deg] hover:scale-110 transition duration-700;
