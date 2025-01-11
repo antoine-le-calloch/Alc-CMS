@@ -35,7 +35,7 @@ const LinearList: React.FC<ListProps> = ({items, itemLink}) => {
                 <h2>
                     List
                 </h2>
-                <Link href={`admin/${itemLink}/new`}
+                <Link href={`${itemLink}/new`}
                       className="rounded bg-blue-300 hover:bg-blue-400 py-1 px-2">
                     New
                 </Link>
@@ -51,7 +51,7 @@ const LinearList: React.FC<ListProps> = ({items, itemLink}) => {
                             <div className="font-bold">{item.title}</div>
                             <div className="font-bold">{item.info}</div>
                             <div className="flex items-center">
-                                <Link href={`admin/${itemLink}/edit/${item.id}`}>
+                                <Link href={`${itemLink}/edit/${item.id}`}>
                                     <Button className="bg-transparent border-none">
                                         <PencilSquareIcon className="h-6 w-6 ml-2 text-blue-400"/>
                                     </Button>
