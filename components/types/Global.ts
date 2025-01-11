@@ -2,7 +2,8 @@
 interface Block {
     id?: string;
     title: string;
-    data: string;
+    html: string;
+    variables: string[];
 }
 
 // structure of the page object
