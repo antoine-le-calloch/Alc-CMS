@@ -96,14 +96,14 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         {page.blocks && page.blocks.map((block, index) => (
                             <div key={index} className="border border-gray-300 bg-white rounded-lg p-2 mb-2">
                                 {block.title}
-                                <div>
+                                <div className="py-2 flex flex-col gap-2 items-center">
                                     {block.variables && block.variables.map((variable) => (
                                         <input type="text"
                                                key={variable}
                                                value={variable}
                                                placeholder="variable"
                                                onChange={(e) => { block.variables = [e.target.value] }}
-                                               className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-[250px]
+                                               className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-1/3
                                                focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
                                     ))}
                                 </div>
