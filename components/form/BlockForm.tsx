@@ -18,8 +18,7 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
     });
     
     const addVariable = () => {
-        let newVariable = "variable" + (block.variables.length + 1);
-        setBlock({...block, variables: [...block.variables, newVariable]});
+        setBlock({...block, variables: [...block.variables, "variable" + (block.variables.length + 1)]});
     };
 
     const handleSubmit = async () => {
