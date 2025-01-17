@@ -58,25 +58,25 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 <div className="p-6 pt-2">
                     <div className="flex gap-1 text-sm mb-2">
                         {block.variables.length ? block.variables.map((variable) => (
-                            <div className="border rounded-2xl bg-white px-2 py-1 relative" key={variable}>
-                                {variable}
-                                <div className="absolute left-0 top-0 w-full h-full rounded-2xl opacity-0 hover:opacity-100 duration-200">
-                                    <button onClick={() => setBlock({...block,
-                                        variables: block.variables.filter((v) => v !== variable)})}
-                                            type="button" className="w-[20px] h-full 
-                                            rounded-l-2xl bg-gray-300 flex justify-center items-center">
-                                        x
-                                    </button>
+                            <div className="border rounded-2xl bg-white flex group" key={variable}>
+                                <button onClick={() => setBlock({...block,
+                                    variables: block.variables.filter((v) => v !== variable)})}
+                                        type="button" className="flex justify-center items-center w-0 h-full opacity-0
+                                        rounded-l-2xl bg-gray-300 group-hover:opacity-100 group-hover:w-7 transition-all duration-300">
+                                    x
+                                </button>
+                                <div className="px-2 py-1">
+                                    {variable}    
                                 </div>
                             </div>
-                            )) : <div className="border border-gray-400 border-dashed rounded-2xl px-2 py-1">No
+                        )) : <div className="border border-gray-400 border-dashed rounded-2xl px-2 py-1">No
                             variables</div>}
                         <button onClick={addVariable} type="button">
                             <PlusIcon className="plus-icon-style h-5 w-5"/>
                         </button>
                     </div>
                     <textarea
-                       value={block.html}
+                        value={block.html}
                        placeholder="Html"
                        onChange={(e) => setBlock({...block, html: e.target.value})}
                        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-full
