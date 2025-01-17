@@ -58,15 +58,18 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 <div className="p-6 pt-2">
                     <div className="flex gap-1 text-sm mb-2">
                         {block.variables.length ? block.variables.map((variable) => (
-                            <button onClick={() => setBlock({...block, variables: block.variables.filter((v) => v !== variable)})}
-                            type="button" className="border rounded-2xl bg-white px-2 py-1 relative" key={variable}>
+                            <div className="border rounded-2xl bg-white px-2 py-1 relative" key={variable}>
                                 {variable}
-                                <div className="absolute left-0 top-0 w-full h-full rounded-2xl bg-gray-300
-                                flex justify-center items-center font-bold text-xl opacity-0 hover:opacity-100 duration-200">
-                                    <div className="h-1 w-3/12 bg-black"/>
+                                <div className="absolute left-0 top-0 w-full h-full rounded-2xl opacity-0 hover:opacity-100 duration-200">
+                                    <button onClick={() => setBlock({...block,
+                                        variables: block.variables.filter((v) => v !== variable)})}
+                                            type="button" className="w-[20px] h-full 
+                                            rounded-l-2xl bg-gray-300 flex justify-center items-center">
+                                        x
+                                    </button>
                                 </div>
-                            </button>
-                        )) : <div className="border border-gray-400 border-dashed rounded-2xl px-2 py-1">No
+                            </div>
+                            )) : <div className="border border-gray-400 border-dashed rounded-2xl px-2 py-1">No
                             variables</div>}
                         <button onClick={addVariable} type="button">
                             <PlusIcon className="plus-icon-style h-5 w-5"/>
