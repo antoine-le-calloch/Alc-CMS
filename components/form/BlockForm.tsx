@@ -34,16 +34,6 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
     const handleDragStart = (e: React.DragEvent<HTMLDivElement>, variable: string) => {
         e.dataTransfer.setData('text/plain', `[${variable}]`);
     };
-
-    const handleDrop = (e: React.DragEvent<HTMLTextAreaElement>) => {
-        e.preventDefault();
-        const variable = e.dataTransfer.getData('text/plain');
-        setBlock({...block, html: block.html + variable});
-    };
-
-    const handleDragOver = (e: React.DragEvent<HTMLTextAreaElement>) => {
-        e.preventDefault();
-    };
     
     return (
         <div>
@@ -91,8 +81,6 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                     </div>
                     <textarea
                         value={block.html}
-                        onDrop={handleDrop}
-                        onDragOver={handleDragOver}
                         placeholder="Html"
                         onChange={(e) => setBlock({...block, html: e.target.value})}
                         className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-full
