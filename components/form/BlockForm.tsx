@@ -30,6 +30,20 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
             alert(error.message);
         }
     };
+
+    const handleDragStart = (e, variable) => {
+        e.dataTransfer.setData('text/plain', `{{${variable}}}`);
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const variable = e.dataTransfer.getData('text/plain');
+        setBlock({...block, html: block.html + variable});
+    };
+
+    const handleDragOver = (e) => {
+        e.preventDefault();
+    };
     
     return (
         <div>
@@ -58,7 +72,7 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 <div className="p-6 pt-2">
                     <div className="flex gap-1 text-sm mb-2">
                         {block.variables.length ? block.variables.map((variable) => (
-                            <div draggable="true" className="border rounded-2xl bg-white flex group cursor-grab" key={variable}>
+                            <div draggable="true" onDragStart={(e) => handleDragStart(e, variable)} className="border rounded-2xl bg-white flex group cursor-grab" key={variable}>
                                 <button onClick={() => setBlock({...block,
                                     variables: block.variables.filter((v) => v !== variable)})}
                                         type="button" className="flex justify-center items-center w-0 h-full opacity-0
@@ -77,10 +91,13 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                     </div>
                     <textarea
                         value={block.html}
-                       placeholder="Html"
-                       onChange={(e) => setBlock({...block, html: e.target.value})}
-                       className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-full
-                       focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
+                        contentEditable="true"
+                        onDrop={handleDrop}
+                        onDragOver={handleDragOver}
+                        placeholder="Html"
+                        onChange={(e) => setBlock({...block, html: e.target.value})}
+                        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-full
+                        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
                 </div>
             </div>
             <div className="flex justify-around">
