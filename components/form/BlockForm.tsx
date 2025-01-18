@@ -91,7 +91,6 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                     </div>
                     <textarea
                         value={block.html}
-                        contentEditable="true"
                         onDrop={handleDrop}
                         onDragOver={handleDragOver}
                         placeholder="Html"
