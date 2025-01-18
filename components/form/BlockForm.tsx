@@ -58,7 +58,7 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 <div className="p-6 pt-2">
                     <div className="flex gap-1 text-sm mb-2">
                         {block.variables.length ? block.variables.map((variable) => (
-                            <div className="border rounded-2xl bg-white flex group" key={variable}>
+                            <div draggable="true" className="border rounded-2xl bg-white flex group cursor-grab" key={variable}>
                                 <button onClick={() => setBlock({...block,
                                     variables: block.variables.filter((v) => v !== variable)})}
                                         type="button" className="flex justify-center items-center w-0 h-full opacity-0
