@@ -31,17 +31,17 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
         }
     };
 
-    const handleDragStart = (e, variable) => {
-        e.dataTransfer.setData('text/plain', `{{${variable}}}`);
+    const handleDragStart = (e: React.DragEvent<HTMLDivElement>, variable: string) => {
+        e.dataTransfer.setData('text/plain', `[${variable}]`);
     };
 
-    const handleDrop = (e) => {
+    const handleDrop = (e: React.DragEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
         const variable = e.dataTransfer.getData('text/plain');
         setBlock({...block, html: block.html + variable});
     };
 
-    const handleDragOver = (e) => {
+    const handleDragOver = (e: React.DragEvent<HTMLTextAreaElement>) => {
         e.preventDefault();
     };
     
