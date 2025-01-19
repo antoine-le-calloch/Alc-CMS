@@ -13,7 +13,6 @@ interface BlockFormProps {
 const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
     const [block, setBlock] = useState<Block>(blockToEdit || {
         title: '',
-        html: '',
         variables: []
     });
     
@@ -29,10 +28,6 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
             console.error("Error:", error);
             alert(error.message);
         }
-    };
-
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>, variable: string) => {
-        e.dataTransfer.setData('text/plain', `[${variable}]`);
     };
     
     return (
@@ -57,12 +52,12 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
             </div>
             <div className="mb-4 px-3 py-2 bg-slate-50 rounded-xl shadow-md">
                 <h2 className="font-bold text-lg m-0 text-gray-800">
-                    Data
+                    Variables
                 </h2>
                 <div className="p-6 pt-2">
                     <div className="flex gap-1 text-sm mb-2">
                         {block.variables.length ? block.variables.map((variable) => (
-                            <div draggable="true" onDragStart={(e) => handleDragStart(e, variable)} className="border rounded-2xl bg-white flex group cursor-grab" key={variable}>
+                            <div draggable="true" className="border rounded-2xl bg-white flex group" key={variable}>
                                 <button onClick={() => setBlock({...block,
                                     variables: block.variables.filter((v) => v !== variable)})}
                                         type="button" className="flex justify-center items-center w-0 h-full opacity-0
@@ -79,12 +74,6 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                             <PlusIcon className="plus-icon-style h-5 w-5"/>
                         </button>
                     </div>
-                    <textarea
-                        value={block.html}
-                        placeholder="Html"
-                        onChange={(e) => setBlock({...block, html: e.target.value})}
-                        className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-full
-                        focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
                 </div>
             </div>
             <div className="flex justify-around">

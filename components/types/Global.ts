@@ -2,7 +2,6 @@
 interface Block {
     id?: string;
     title: string;
-    html: string;
     variables: string[];
 }
 
