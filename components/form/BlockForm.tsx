@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from "@/components/utils/button/Button";
 import {saveBlock} from "@/components/services/SaveBlock";
 import {PlusIcon} from "@heroicons/react/24/solid";
+import {TrashIcon} from "@heroicons/react/24/outline";
 
 interface BlockFormProps {
     blockToEdit: Block | null;
@@ -18,6 +19,16 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
     
     const addVariable = () => {
         setBlock({...block, variables: [...block.variables, "variable" + (block.variables.length + 1)]});
+    };
+
+    const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
+        e.dataTransfer.setData('text/plain', index.toString());
+    };
+
+    const handleDrop = (e: React.DragEvent<SVGSVGElement>) => {
+        e.preventDefault();
+        const index = parseInt(e.dataTransfer.getData('text/plain'));
+        setBlock({...block, variables: block.variables.filter((_, i) => i !== index)});
     };
 
     const handleSubmit = async () => {
@@ -54,26 +65,24 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                 <h2 className="font-bold text-lg m-0 text-gray-800">
                     Variables
                 </h2>
-                <div className="p-6 pt-2">
-                    <div className="flex gap-1 text-sm mb-2">
-                        {block.variables.length ? block.variables.map((variable) => (
-                            <div draggable="true" className="border rounded-2xl bg-white flex group" key={variable}>
-                                <button onClick={() => setBlock({...block,
-                                    variables: block.variables.filter((v) => v !== variable)})}
-                                        type="button" className="flex justify-center items-center w-0 h-full opacity-0
-                                        rounded-l-2xl bg-gray-300 group-hover:opacity-100 group-hover:w-7 transition-all duration-300">
-                                    x
-                                </button>
-                                <div className="px-2 py-1">
-                                    {variable}    
-                                </div>
+                <div className="p-6">
+                    <div className="flex gap-2">
+                        {block.variables.length ? block.variables.map((variable, index) => (
+                            <div draggable="true" className="border rounded-2xl bg-white flex group px-3 py-1.5 text-sm cursor-grab" 
+                                 key={index} onDragStart={(e) => handleDragStart(e, index)}>
+                                {variable}
                             </div>
-                        )) : <div className="border border-gray-400 border-dashed rounded-2xl px-2 py-1">No
-                            variables</div>}
+                        )) : <div className="border border-gray-400 border-dashed rounded-2xl px-3 py-1.5 text-sm">
+                            No variables
+                        </div>}
                         <button onClick={addVariable} type="button">
                             <PlusIcon className="plus-icon-style h-5 w-5"/>
                         </button>
                     </div>
+                </div>
+                <div className="flex justify-center mb-3">
+                    <TrashIcon className="h-5 w-5 text-red-500 hover:scale-125 duration-500"
+                               onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}/>
                 </div>
             </div>
             <div className="flex justify-around">
