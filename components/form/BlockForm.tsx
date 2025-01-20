@@ -12,6 +12,7 @@ interface BlockFormProps {
 }
 
 const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
+    const [isDragOver, setIsDragOver] = useState(false);
     const [block, setBlock] = useState<Block>(blockToEdit || {
         title: '',
         variables: []
@@ -27,6 +28,7 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
 
     const handleDrop = (e: React.DragEvent<SVGSVGElement>) => {
         e.preventDefault();
+        setIsDragOver(false);
         const index = parseInt(e.dataTransfer.getData('text/plain'));
         setBlock({...block, variables: block.variables.filter((_, i) => i !== index)});
     };
@@ -81,7 +83,9 @@ const BlockForm: React.FC<BlockFormProps> = ({ blockToEdit }) => {
                     </div>
                 </div>
                 <div className="flex justify-center mb-3">
-                    <TrashIcon className="h-5 w-5 text-red-500 hover:scale-125 duration-500"
+                    <TrashIcon className={`h-6 w-6 text-red-500 duration-500 ${isDragOver ? 'scale-125' : ''}`}
+                               onDragEnter={() => setIsDragOver(true)}
+                                 onDragLeave={() => setIsDragOver(false)}
                                onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}/>
                 </div>
             </div>
