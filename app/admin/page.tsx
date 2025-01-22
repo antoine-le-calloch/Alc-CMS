@@ -43,7 +43,7 @@ export default function HomePage() {
                             BLOCKS
                         </h2>
                         {blocks === null ?
-                            <Loading/> : <PillList items={blocks} itemLink="blocks"/>
+                            <Loading/> : <PillList items={blocks} itemLink="blocks/edit" addItemLink="blocks/new"/>
                         }
                     </div>
                 </div>
