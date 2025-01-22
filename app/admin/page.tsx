@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import TopBar from "@/components/layout/TopBar";
 import PillList from "@/components/list/PillList";
 import Loading from "@/components/utils/Loading";
+import PageList from "@/components/list/PageList";
 
 export default function HomePage() {
     const [pages, setPages] = useState(null)
@@ -34,7 +35,7 @@ export default function HomePage() {
                             PAGES
                         </h2>
                         { pages === null ? 
-                            <Loading/> : <PillList items={pages} itemLink="pages"/>
+                            <Loading/> : <PageList items={pages} itemLink="pages"/>
                         }
                     </div>
                     <div className="flex flex-col items-center">
