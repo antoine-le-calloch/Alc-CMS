@@ -2,9 +2,9 @@
 
 import React, {useEffect, useState} from 'react';
 import TopBar from "@/components/layout/TopBar";
-import PillList from "@/components/list/PillList";
 import Loading from "@/components/utils/Loading";
-import PageList from "@/components/list/PageList";
+import PageList from "@/components/dashboard/PageList";
+import BlockList from "@/components/dashboard/BlockList";
 
 export default function HomePage() {
     const [pages, setPages] = useState(null)
@@ -35,7 +35,7 @@ export default function HomePage() {
                             PAGES
                         </h2>
                         { pages === null ? 
-                            <Loading/> : <PageList items={pages} itemLink="pages"/>
+                            <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new"/>
                         }
                     </div>
                     <div className="flex flex-col items-center">
@@ -43,7 +43,7 @@ export default function HomePage() {
                             BLOCKS
                         </h2>
                         {blocks === null ?
-                            <Loading/> : <PillList items={blocks} itemLink="blocks/edit" addItemLink="blocks/new"/>
+                            <Loading/> : <BlockList blocks={blocks} editBlockLink="blocks/edit" addBlockLink="blocks/new"/>
                         }
                     </div>
                 </div>
