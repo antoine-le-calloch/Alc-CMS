@@ -10,8 +10,9 @@ interface BlockListProps {
 
 const BlockList: React.FC<BlockListProps> = ({blocks, editBlockLink, addBlockLink}) => {
 
-    const handleDragStart = (e: React.DragEvent<HTMLAnchorElement>, title: string) => {
-        e.dataTransfer.setData("blockName", title);
+    const handleDragStart = (e: React.DragEvent<HTMLAnchorElement>, block: Block) => {
+        e.dataTransfer.setData("blockId", String(block.id));
+        e.dataTransfer.setData("blockTitle", block.title);
     };
     
     return (
@@ -19,7 +20,7 @@ const BlockList: React.FC<BlockListProps> = ({blocks, editBlockLink, addBlockLin
             <div className="flex flex-col">
                 {blocks.length > 0 ? blocks.map((block: Block) => (
                         <Link key={block.id} href={`/admin/${editBlockLink}/${block.id}`} draggable={true} 
-                              onDragStart={(e) => handleDragStart(e, block.title)}
+                              onDragStart={(e) => handleDragStart(e, block)}
                               className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 zoom-on-hover">
                             {block.title}
                         </Link>
