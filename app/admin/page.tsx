@@ -7,8 +7,8 @@ import PageList from "@/components/dashboard/PageList";
 import BlockList from "@/components/dashboard/BlockList";
 
 export default function HomePage() {
-    const [pages, setPages] = useState(null)
-    const [blocks, setBlocks] = useState(null)
+    const [pages, setPages] = useState<Page[] | null>(null)
+    const [blocks, setBlocks] = useState<Block[] | null>(null)
 
     useEffect(() => {
         async function fetchPages() {
