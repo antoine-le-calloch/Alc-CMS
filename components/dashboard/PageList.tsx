@@ -9,7 +9,7 @@ interface PageListProps {
     addPageLink: string;
 }
 
-const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink}) => {
+const PageList: React.FC<PageListProps> = ({pages, setPages, editPageLink, addPageLink}) => {
     const [pageExpanded, setPageExpanded] = useState<string | null>(null)
 
     return (
