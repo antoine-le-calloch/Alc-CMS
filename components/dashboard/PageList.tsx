@@ -5,6 +5,7 @@ import {ArrowDownCircleIcon} from "@heroicons/react/24/outline";
 
 interface PageListProps {
     pages: Page[];
+    setPages: React.Dispatch<React.SetStateAction<Page[] | null>>;
     editPageLink: string;
     addPageLink: string;
 }
