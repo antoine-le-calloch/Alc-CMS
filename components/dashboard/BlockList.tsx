@@ -10,8 +10,8 @@ interface BlockListProps {
 
 const BlockList: React.FC<BlockListProps> = ({blocks, editBlockLink, addBlockLink}) => {
 
-    const handleDragStart = (e: React.DragEvent<HTMLAnchorElement>, id: string) => {
-        e.dataTransfer.setData("id", id);
+    const handleDragStart = (e: React.DragEvent<HTMLAnchorElement>, title: string) => {
+        e.dataTransfer.setData("blockName", title);
     };
     
     return (
