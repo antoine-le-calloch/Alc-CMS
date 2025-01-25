@@ -17,7 +17,7 @@ const PageList: React.FC<PageListProps> = ({pages, setPages, editPageLink, addPa
         e.preventDefault();
     }
     
-    const onDrop = (e: React.DragEvent<HTMLDivElement>, pageId: string) => {
+    const onDrop = (e: React.DragEvent<HTMLDivElement>, pageId: string | undefined) => {
         e.preventDefault();
         const blockId = e.dataTransfer.getData("blockId");
         const blockTitle = e.dataTransfer.getData("blockTitle");
