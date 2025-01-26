@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import {PlusIcon} from "@heroicons/react/16/solid";
 import {ArrowDownCircleIcon} from "@heroicons/react/24/outline";
+import {savePage} from "@/components/services/SavePage";
 
 interface PageListProps {
     pages: Page[];
@@ -10,7 +11,7 @@ interface PageListProps {
     addPageLink: string;
 }
 
-const PageList: React.FC<PageListProps> = ({pages, setPages, editPageLink, addPageLink}) => {
+const PageList: React.FC<PageListProps> = ({pages, setPages, editPageLink, addPageLink, blocks}) => {
     const [pageExpanded, setPageExpanded] = useState<string | null>(null)
 
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -19,29 +20,20 @@ const PageList: React.FC<PageListProps> = ({pages, setPages, editPageLink, addPa
     
     const onDrop = (e: React.DragEvent<HTMLDivElement>, pageId: string | undefined) => {
         e.preventDefault();
-        const blockId = e.dataTransfer.getData("blockId");
-        const blockTitle = e.dataTransfer.getData("blockTitle");
-        
-        const newBlock = {
-            id: parseInt(blockId),
-            title: blockTitle
+        const blockToAdd = blocks.find((block: Block) => block.id === e.dataTransfer.getData("blockId"));
+        const pageToUpdate = pages.find((page: Page) => page.id === pageId);
+        if (blockToAdd && pageToUpdate) {
+            pageToUpdate.blocks.push(newBlock);
+            try {
+                await savePage(pageToEdit, true);
+                window.location.href = '/admin/';
+            } catch (error: any) {
+                console.error("Error:", error);
+                alert(error.message);
+            }
         }
-        
-        setPages((prevPages) => {
-            if (!prevPages) return null;
-
-            return prevPages.map((page) => {
-                if (page.id === pageId) {
-                    return {
-                        ...page,
-                        blocks: [...page.blocks, newBlock],
-                    };
-                }
-                return page;
-            });
-        });
     }
-    
+
     return (
         <div>
             <div className="flex flex-col">
