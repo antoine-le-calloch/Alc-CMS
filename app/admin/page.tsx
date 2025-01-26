@@ -35,7 +35,7 @@ export default function HomePage() {
                             PAGES
                         </h2>
                         { pages === null ? 
-                            <Loading/> : <PageList pages={pages} setPages={setPages} editPageLink="pages/edit" addPageLink="pages/new" blocks={blocks}/>
+                            <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new" blocks={blocks}/>
                         }
                     </div>
                     <div className="flex flex-col items-center">

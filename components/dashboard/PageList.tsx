@@ -6,12 +6,11 @@ import {savePage} from "@/components/services/SavePage";
 
 interface PageListProps {
     pages: Page[];
-    setPages: React.Dispatch<React.SetStateAction<Page[] | null>>;
     editPageLink: string;
     addPageLink: string;
 }
 
-const PageList: React.FC<PageListProps> = ({pages, setPages, editPageLink, addPageLink, blocks}) => {
+const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, blocks}) => {
     const [pageExpanded, setPageExpanded] = useState<string | null>(null)
 
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
