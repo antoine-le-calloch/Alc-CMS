@@ -18,7 +18,7 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
         e.preventDefault();
     }
     
-    const onDrop = (e: React.DragEvent<HTMLDivElement>, pageId: string | undefined) => {
+    const onDrop = async (e: React.DragEvent<HTMLDivElement>, pageId: string | undefined) => {
         e.preventDefault();
         const blockToAdd = blocks?.find((block: Block) => block.id === e.dataTransfer.getData("blockId"));
         const pageToUpdate = pages.find((page: Page) => page.id === pageId);
