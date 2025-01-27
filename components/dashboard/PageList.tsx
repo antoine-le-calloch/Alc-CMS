@@ -20,12 +20,12 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
     
     const onDrop = (e: React.DragEvent<HTMLDivElement>, pageId: string | undefined) => {
         e.preventDefault();
-        const blockToAdd = blocks.find((block: Block) => block.id === e.dataTransfer.getData("blockId"));
+        const blockToAdd = blocks?.find((block: Block) => block.id === e.dataTransfer.getData("blockId"));
         const pageToUpdate = pages.find((page: Page) => page.id === pageId);
         if (blockToAdd && pageToUpdate) {
-            pageToUpdate.blocks.push(newBlock);
+            pageToUpdate.blocks.push(blockToAdd);
             try {
-                await savePage(pageToEdit, true);
+                await savePage(pageToUpdate, true);
                 window.location.href = '/admin/';
             } catch (error: any) {
                 console.error("Error:", error);
