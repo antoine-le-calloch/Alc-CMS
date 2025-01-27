@@ -8,7 +8,7 @@ interface PageListProps {
     pages: Page[];
     editPageLink: string;
     addPageLink: string;
-    blocks: Block[];
+    blocks: Block[] | null;
 }
 
 const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, blocks}) => {
