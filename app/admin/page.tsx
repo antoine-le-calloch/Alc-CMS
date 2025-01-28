@@ -6,11 +6,12 @@ import Loading from "@/components/utils/Loading";
 import PageList from "@/components/dashboard/PageList";
 import BlockList from "@/components/dashboard/BlockList";
 import {savePage} from "@/components/services/SavePage";
+import {TrashIcon} from "@heroicons/react/24/outline";
 
 export default function HomePage() {
     const [pages, setPages] = useState<Page[] | null>(null)
     const [blocks, setBlocks] = useState<Block[] | null>(null)
-    const [dragOver, setDragOver] = useState(false);
+    const [isDragOver, setIsDragOver] = useState(false);
 
     useEffect(() => {
         async function fetchPages() {
@@ -27,10 +28,9 @@ export default function HomePage() {
         fetchBlocks().then()
     }, [])
     
-    const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-        e.preventDefault();
-        if (!e.dataTransfer.getData("blockIndex")) return;
-        setDragOver(true);
+    const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) => {
+        return !!e.dataTransfer.getData("blockIndex");
+        
     }
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
@@ -53,8 +53,20 @@ export default function HomePage() {
     
     return (
         <div>
-            <TopBar titleName={"Dashboard"}/>
-            <div className={`container pt-6 background ${dragOver ? "bg-gray-700" : ""}`} onDrop={onDrop} onDragOver={onDragOver}>
+            <TopBar titleName="Dashboard"/>
+            <div className="relative">
+                <div className={`${isDragOver ? "opacity-50" : "opacity-0"} absolute bg-gray-400 
+                top-0 left-0 duration-400 w-full h-screen flex items-center justify-center`}
+                     onDragEnter={(e) => setIsDragOver(isDragFromPages(e))}
+                     onDragLeave={() => setIsDragOver(false)}
+                     onDragOver={(e) => e.preventDefault()}
+                     onDrop={onDrop}>
+                    <TrashIcon className="h-10 w-10 text-gray-300"/>
+                </div>
+            </div>
+            <div className="container pt-6 background relative"
+                 onDragEnter={(e) => setIsDragOver(isDragFromPages(e))}
+                 onDragOver={(e) => e.preventDefault()}>
                 <div className="flex justify-around text-center">
                     <div className="flex flex-col items-center">
                         <h2 className="mb-4 font-bold">
