@@ -54,7 +54,7 @@ export default function HomePage() {
     return (
         <div>
             <TopBar titleName="Dashboard"/>
-            <div className="relative">
+            <div className="container pt-6 background relative">
                 <div className={`${isDragOver ? "opacity-50" : "opacity-0"} absolute bg-gray-400 
                 top-0 left-0 duration-400 w-full h-screen flex items-center justify-center`}
                      onDragEnter={(e) => setIsDragOver(isDragFromPages(e))}
@@ -63,26 +63,26 @@ export default function HomePage() {
                      onDrop={onDrop}>
                     <TrashIcon className="h-10 w-10 text-gray-300"/>
                 </div>
-            </div>
-            <div className="container pt-6 background relative"
-                 onDragEnter={(e) => setIsDragOver(isDragFromPages(e))}
-                 onDragOver={(e) => e.preventDefault()}>
                 <div className="flex justify-around text-center">
                     <div className="flex flex-col items-center">
                         <h2 className="mb-4 font-bold">
                             PAGES
                         </h2>
-                        { pages === null ? 
-                            <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new" blocks={blocks}/>
-                        }
+                        <div className="z-10">
+                            { pages === null ? 
+                                <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new" blocks={blocks}/>
+                            }
+                        </div>
                     </div>
                     <div className="flex flex-col items-center">
                         <h2 className="mb-4 font-bold">
                             BLOCKS
                         </h2>
-                        {blocks === null ?
-                            <Loading/> : <BlockList blocks={blocks} editBlockLink="blocks/edit" addBlockLink="blocks/new"/>
-                        }
+                        <div className="z-10">
+                            {blocks === null ?
+                                <Loading/> : <BlockList blocks={blocks} editBlockLink="blocks/edit" addBlockLink="blocks/new"/>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
