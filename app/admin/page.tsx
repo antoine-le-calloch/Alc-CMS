@@ -29,6 +29,7 @@ export default function HomePage() {
     
     const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
+        if (!e.dataTransfer.getData("blockIndex")) return;
         setDragOver(true);
     }
     
