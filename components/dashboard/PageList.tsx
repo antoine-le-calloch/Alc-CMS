@@ -34,16 +34,13 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
         }
     }
     
-    const onDragStart = async (e: React.DragEvent<HTMLDivElement>, page: Page, blockId: string | undefined) => {
+    const onDragStart = async ( e: React.DragEvent<HTMLDivElement>, 
+            pageId: string | undefined, 
+            blockId: string | undefined) => {
+        
         if (blockId === undefined) return;
         e.dataTransfer.setData("blockId", blockId);
-        page.blocks = page.blocks.filter((block: Block) => block.id !== blockId);
-        try {
-            await savePage(page, true);
-        } catch (error: any) {
-            console.error("Error:", error);
-            alert(error.message);
-        }
+        e.dataTransfer.setData("pageId", pageId);
     }
 
     return (
@@ -61,7 +58,7 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
                         {pageExpanded === page.id && (
                             <div className="flex flex-col items-center mt-2" onDragOver={onDragOver} onDrop={(e) => onDrop(e, page.id)}>
                                 {page.blocks.length > 0 ? page.blocks.map((block: Block) => (
-                                    <div draggable={true} onDragStart={(e) => onDragStart(e, page, block.id)} key={block.id} className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2">
+                                    <div draggable={true} onDragStart={(e) => onDragStart(e, page.id, block.id)} key={block.id} className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2">
                                         {block.title}
                                     </div>
                                 )) : (
