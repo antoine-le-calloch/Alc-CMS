@@ -35,12 +35,11 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
     }
     
     const onDragStart = async ( e: React.DragEvent<HTMLDivElement>, 
-            pageId: string | undefined, 
-            blockId: string | undefined) => {
-        
-        if (blockId === undefined || pageId === undefined) return;
-        e.dataTransfer.setData("blockId", blockId);
+                                pageId: string | undefined,
+                                index: number) => {
+        if (pageId === undefined) return;
         e.dataTransfer.setData("pageId", pageId);
+        e.dataTransfer.setData("blockIndex", index.toString());
     }
 
     return (
@@ -57,8 +56,8 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
                         </button>
                         {pageExpanded === page.id && (
                             <div className="flex flex-col items-center mt-2" onDragOver={onDragOver} onDrop={(e) => onDrop(e, page.id)}>
-                                {page.blocks.length > 0 ? page.blocks.map((block: Block) => (
-                                    <div draggable={true} onDragStart={(e) => onDragStart(e, page.id, block.id)} key={block.id} className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2">
+                                {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
+                                    <div draggable={true} onDragStart={(e) => onDragStart(e, page.id, index)} key={index} 
                                          className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 cursor-grab hover:scale-105 duration-200">
                                         {block.title}
                                     </div>
