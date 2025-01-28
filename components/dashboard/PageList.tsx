@@ -38,7 +38,7 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
             pageId: string | undefined, 
             blockId: string | undefined) => {
         
-        if (blockId === undefined) return;
+        if (blockId === undefined || pageId === undefined) return;
         e.dataTransfer.setData("blockId", blockId);
         e.dataTransfer.setData("pageId", pageId);
     }
