@@ -36,8 +36,10 @@ export default function HomePage() {
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         const blockIndex = e.dataTransfer.getData("blockIndex");
+        if (!blockIndex) return;
+        
         const pageToUpdate = pages?.find((page: Page) => page.id === e.dataTransfer.getData("pageId"));
-        if (!blockIndex || !pageToUpdate) return;
+        if (!pageToUpdate) return;
         
         pageToUpdate.blocks = pageToUpdate.blocks.filter((_: Block, index: number) => index !== parseInt(blockIndex));
         try {
