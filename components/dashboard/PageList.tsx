@@ -13,9 +13,30 @@ interface PageListProps {
 
 const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, blocks}) => {
     const [pageExpanded, setPageExpanded] = useState<string | null>(null)
+    const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 
-    const onDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    const onDragOver = (e: any, pageId: string | undefined) => {
         e.preventDefault();
+        const { top, bottom } = e.target.getBoundingClientRect();
+        const middle = (top + bottom) / 2;
+        const offset = e.clientY - middle;
+        
+        if (!previewIndex) {
+            const pageToUpdate = pages.find((page: Page) => page.id === pageId);
+            const blockToAdd = blocks?.find((block: Block) => block.id === e.dataTransfer.getData("blockId"));
+            if (pageToUpdate && blockToAdd){
+                setPreviewIndex(offset > 0 ? pageToUpdate.blocks.length : 0);
+                pageToUpdate.blocks = previewIndex === 1 ? [...pageToUpdate.blocks, blockToAdd] : [blockToAdd, ...pageToUpdate.blocks];
+            }
+        }else if (offset !== previewIndex) {
+            const pageToUpdate = pages.find((page: Page) => page.id === pageId);
+            if (pageToUpdate) {
+                const blockToAdd = pageToUpdate.blocks[previewIndex];
+                pageToUpdate.blocks[previewIndex] = pageToUpdate.blocks[offset > 0 ? pageToUpdate.blocks.length - 1 : 0]
+                setPreviewIndex(offset > 0 ? pageToUpdate.blocks.length - 1 : 0);
+                pageToUpdate.blocks[previewIndex] = blockToAdd;
+            }
+        }
     }
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>, pageId: string | undefined) => {
