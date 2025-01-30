@@ -58,7 +58,8 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
                             <div className="flex flex-col items-center mt-2" onDragOver={onDragOver} onDrop={(e) => onDrop(e, page.id)}>
                                 {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
                                     <div draggable={true} onDragStart={(e) => onDragStart(e, page.id, index)} key={index} 
-                                         className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 cursor-grab hover:scale-105 duration-200">
+                                         className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 cursor-grab hover:scale-105 duration-200 relative">
+                                        <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
                                         {block.title}
                                     </div>
                                 )) : (
