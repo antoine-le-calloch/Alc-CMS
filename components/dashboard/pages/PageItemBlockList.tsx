@@ -15,7 +15,6 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
             id: e.dataTransfer.getData("blockId"),
             title: e.dataTransfer.getData("blockTitle")
         });
-        console.log(blockDragged);
     }
     
     const onDragOver = (e: any, index: number) => {
@@ -26,8 +25,13 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                 title: e.dataTransfer.getData("blockTitle")
             });
         }
-        if (previewIndex !== index) {
-            console.log(index);
+        const {top, bottom} = e.currentTarget.getBoundingClientRect();
+        const mid = (top + bottom) / 2;
+        const cursorPosition = e.clientY;
+        
+        if (cursorPosition > mid && previewIndex !== index + 1) {
+            setPreviewIndex(index + 1);
+        }else if (cursorPosition <= mid && previewIndex !== index) {
             setPreviewIndex(index);
         }
     }
@@ -55,21 +59,29 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     }
 
     return (
-        <div className="flex flex-col items-center mt-2" onDrop={(e) => onDrop(e)}
+        <div className="flex flex-col items-center my-2" onDrop={(e) => onDrop(e)}
              onDragEnter={(e => onDragEnter(e))} onDragExit={() => setBlockDragged(null)}>
             {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
                 <div key={index}>
-                    {blockDragged && previewIndex === index &&
+                    {blockDragged && previewIndex === index && 
+                        // Display placeholder when dragging a block over the list
                         <div className="bg-gray-100 border border-dashed border-gray-300 text-gray-400 rounded-lg py-2 px-12 mb-2">
                             {blockDragged.title}
                         </div>
                     }
                     <div draggable={true}  key={index}
-                         onDragOver={(e) => onDragOver(e, index)} onDragStart={(e) => onDragStart(e, index)}
+                         onDragOver={(e) => onDragOver(e, index)} 
+                         onDragStart={(e) => onDragStart(e, index)}
                          className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 cursor-grab hover:scale-105 duration-200 relative">
                         <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
                         {block.title}
                     </div>
+                    {blockDragged && previewIndex === index + 1 && index === page.blocks.length - 1 &&
+                        // Display placeholder when dragging a block after the last item of the list
+                        <div className="bg-gray-100 border border-dashed border-gray-300 text-gray-400 rounded-lg py-2 px-12 mb-2">
+                            {blockDragged.title}
+                        </div>
+                    }
                 </div>
             )) : (
                 <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
