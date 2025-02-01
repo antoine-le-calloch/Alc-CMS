@@ -1,17 +1,16 @@
 import React, {useState} from 'react';
 import Link from "next/link";
-import {PlusIcon} from "@heroicons/react/16/solid";
 import {ArrowDownCircleIcon} from "@heroicons/react/24/outline";
 import {savePage} from "@/components/services/SavePage";
 
-interface PageListProps {
+interface PageItemProps {
     pages: Page[];
+    page: Page;
     editPageLink: string;
-    addPageLink: string;
     blocks: Block[] | null;
 }
 
-const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, blocks}) => {
+const PageItem: React.FC<PageItemProps> = ({pages, page, editPageLink, blocks}) => {
     const [pageExpanded, setPageExpanded] = useState<string | null>(null)
     const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 
@@ -64,46 +63,31 @@ const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink, bl
     }
 
     return (
-        <div>
-            <div className="flex flex-col">
-                {pages.length > 0 ? pages.map((page: Page) => (
-                    <div key={page.id} className="flex flex-col items-center justify-between bg-gray-100 border
-                            border-gray-300 rounded-lg mb-2 zoom-on-hover group px-3">
-                        <Link href={`/admin/${editPageLink}/${page.id}`} className="py-2 px-12">
-                            {page.title}
-                        </Link>
-                        <button onClick={() => setPageExpanded(page.id && pageExpanded !== page.id ? page.id : null)}>
-                            <ArrowDownCircleIcon className={`${pageExpanded === page.id ? "h-5" : "h-0"} w-5 group-hover:h-5 duration-500`}/>
-                        </button>
-                        {pageExpanded === page.id && (
-                            <div className="flex flex-col items-center mt-2" onDragOver={onDragOver} onDrop={(e) => onDrop(e, page.id)}>
-                                {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
-                                    <div draggable={true} onDragStart={(e) => onDragStart(e, page.id, index)} key={index} 
-                                         className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 cursor-grab hover:scale-105 duration-200 relative">
-                                        <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
-                                        {block.title}
-                                    </div>
-                                )) : (
-                                    <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
-                                        No blocks
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
-                )): (
-                    <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
-                        No pages
-                    </div>
-                )}
-            </div>
-            <div className="py-1">
-                <a href={`/admin/${addPageLink}`}>
-                    <PlusIcon className="plus-icon-style h-6 w-6"/>
-                </a>
-            </div>
+        <div key={page.id} className="flex flex-col items-center justify-between bg-gray-100 border
+                border-gray-300 rounded-lg mb-2 zoom-on-hover group px-3">
+            <Link href={`/admin/${editPageLink}/${page.id}`} className="py-2 px-12">
+                {page.title}
+            </Link>
+            <button onClick={() => setPageExpanded(page.id && pageExpanded !== page.id ? page.id : null)}>
+                <ArrowDownCircleIcon className={`${pageExpanded === page.id ? "h-5" : "h-0"} w-5 group-hover:h-5 duration-500`}/>
+            </button>
+            {pageExpanded === page.id && (
+                <div className="flex flex-col items-center mt-2" onDragOver={onDragOver} onDrop={(e) => onDrop(e, page.id)}>
+                    {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
+                        <div draggable={true} onDragStart={(e) => onDragStart(e, page.id, index)} key={index} 
+                             className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 cursor-grab hover:scale-105 duration-200 relative">
+                            <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
+                            {block.title}
+                        </div>
+                    )) : (
+                        <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
+                            No blocks
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };
 
-export default PageList;
+export default PageItem;
