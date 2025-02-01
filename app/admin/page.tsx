@@ -3,8 +3,8 @@
 import React, {useEffect, useState} from 'react';
 import TopBar from "@/components/layout/TopBar";
 import Loading from "@/components/utils/Loading";
-import PageList from "@/components/dashboard/PageList";
-import BlockList from "@/components/dashboard/BlockList";
+import PageList from "@/components/dashboard/pages/PageList";
+import BlockList from "@/components/dashboard/blocks/BlockList";
 import {savePage} from "@/components/services/SavePage";
 import {TrashIcon} from "@heroicons/react/24/outline";
 
