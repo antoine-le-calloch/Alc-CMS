@@ -2,7 +2,7 @@
 interface Block {
     id?: string;
     title: string;
-    variables: string[];
+    variables?: string[];
 }
 
 // structure of the page object
