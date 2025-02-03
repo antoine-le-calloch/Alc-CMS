@@ -10,12 +10,12 @@ interface PageListProps {
 
 const PageList: React.FC<PageListProps> = ({pages, editPageLink, addPageLink}) => {
     return (
-        <div>
+        <div className="min-w-80">
             <div className="flex flex-col">
                 {pages.length > 0 ? pages.map((page: Page) => (
                     <PageItem page={page} editPageLink={editPageLink} key={page.id}/>
                 )): (
-                    <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
+                    <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-4 px-12 mb-2 border-dashed">
                         No pages
                     </div>
                 )}

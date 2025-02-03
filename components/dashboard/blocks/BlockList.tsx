@@ -16,16 +16,16 @@ const BlockList: React.FC<BlockListProps> = ({blocks, editBlockLink, addBlockLin
     };
     
     return (
-        <div>
+        <div className="min-w-80">
             <div className="flex flex-col">
                 {blocks.length > 0 ? blocks.map((block: Block) => (
                         <Link key={block.id} href={`/admin/${editBlockLink}/${block.id}`} draggable={true} 
                               onDragStart={(e) => handleDragStart(e, block)}
-                              className="bg-gray-100 border border-gray-300 rounded-lg py-2 px-12 mb-2 zoom-on-hover">
+                              className="bg-gray-100 border border-gray-300 rounded-lg py-4 px-12 mb-2 zoom-on-hover">
                             {block.title}
                         </Link>
                 )) : (
-                    <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
+                    <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-4 px-12 mb-2 border-dashed">
                         No blocks
                     </div>
                 )}

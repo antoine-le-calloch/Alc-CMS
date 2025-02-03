@@ -14,7 +14,7 @@ const PageItem: React.FC<PageItemProps> = ({page, editPageLink}) => {
     return (
         <div key={page.id} className="flex flex-col items-center justify-between bg-gray-100 border
                 border-gray-300 rounded-lg mb-2 zoom-on-hover group px-3">
-            <Link href={`/admin/${editPageLink}/${page.id}`} className="py-2 px-12">
+            <Link href={`/admin/${editPageLink}/${page.id}`} className="py-4 px-12">
                 {page.title}
             </Link>
             <button onClick={() => setPageExpanded(!pageExpanded)}>
