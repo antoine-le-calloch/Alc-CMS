@@ -16,7 +16,7 @@ const BlockList: React.FC<BlockListProps> = ({blocks, editBlockLink, addBlockLin
     };
     
     return (
-        <div className="min-w-80">
+        <div className="min-w-60">
             <div className="flex flex-col">
                 {blocks.length > 0 ? blocks.map((block: Block) => (
                         <Link key={block.id} href={`/admin/${editBlockLink}/${block.id}`} draggable={true} 
