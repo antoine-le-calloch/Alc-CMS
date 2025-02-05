@@ -54,34 +54,36 @@ export default function HomePage() {
     return (
         <div>
             <TopBar titleName="Dashboard"/>
-            <div className="container pt-6 background relative">
-                <div className={`${isDragOver ? "opacity-50" : "opacity-0"} absolute bg-gray-400 
-                top-0 left-0 duration-400 w-full h-screen flex items-center justify-center`}
+            <div className="relative">
+                <div className={`${isDragOver ? "opacity-50" : "opacity-0"} absolute bg-gray-400 top-0 left-0 
+                w-full h-full flex items-center justify-center`}
                      onDragEnter={(e) => setIsDragOver(isDragFromPages(e))}
                      onDragLeave={() => setIsDragOver(false)}
                      onDragOver={(e) => e.preventDefault()}
                      onDrop={onDrop}>
                     <TrashIcon className="h-10 w-10 text-gray-300"/>
                 </div>
-                <div className="flex justify-around text-center">
-                    <div className="flex flex-col items-center">
-                        <h2 className="mb-4 font-bold">
-                            PAGES
-                        </h2>
-                        <div className="z-10">
-                            { pages === null ? 
-                                <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new"/>
-                            }
+                <div className="container pt-6 background">
+                    <div className="flex justify-around text-center">
+                        <div className="flex flex-col items-center">
+                            <h2 className="mb-4 font-bold">
+                                PAGES
+                            </h2>
+                            <div className="z-10">
+                                { pages === null ? 
+                                    <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new"/>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <h2 className="mb-4 font-bold">
-                            BLOCKS
-                        </h2>
-                        <div className="z-10">
-                            {blocks === null ?
-                                <Loading/> : <BlockList blocks={blocks} editBlockLink="blocks/edit" addBlockLink="blocks/new"/>
-                            }
+                        <div className="flex flex-col items-center">
+                            <h2 className="mb-4 font-bold">
+                                BLOCKS
+                            </h2>
+                            <div className="z-10">
+                                {blocks === null ?
+                                    <Loading/> : <BlockList blocks={blocks} editBlockLink="blocks/edit" addBlockLink="blocks/new"/>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
