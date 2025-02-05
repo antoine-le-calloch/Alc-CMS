@@ -6,10 +6,13 @@ interface TopBarProps {
 
 const TopBar: React.FC<TopBarProps> = ({titleName}) => {
     return (
-        <div className="px-4 py-4 border-b border-gray-200 shadow-md bg-white">
-            <h1 className="font-bold uppercase">
-                {titleName}
-            </h1>
+        <div className="relative h-20">
+            <div className="fixed border-b w-full shadow-md h-20 flex items-center justify-left px-4 z-20
+            border-gray-200 bg-white">
+                <h1 className="font-bold uppercase">
+                    {titleName}
+                </h1>
+            </div>
         </div>
     );
 };
