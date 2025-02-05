@@ -5,7 +5,7 @@ import {Cog6ToothIcon} from "@heroicons/react/24/outline";
 
 const LeftPanel = () => {
     return (
-        <div className="flex flex-col justify-between items-center bg-slate-900 text-white dark:bg-white dark:text-slate-900 h-screen p-4 shadow-xl w-[180px]">
+        <div className="flex flex-col justify-between items-center bg-slate-900 text-white dark:bg-white dark:text-slate-900 p-4 shadow-xl w-[180px]">
             <Link href={"/admin"}
                   className="hover:scale-110 duration-700 ease-in-out">
                 <Image src="/logo/logo_alc.png" alt="Logo" width={70} height={70}/>
