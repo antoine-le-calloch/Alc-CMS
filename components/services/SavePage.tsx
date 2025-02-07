@@ -12,6 +12,4 @@ export async function savePage(page: Page, isEdit: boolean): Promise<void> {
         console.error("API Error:", errorMessage);
         throw new Error(`Failed to save the page: ${response.status} ${response.statusText}`);
     }
-
-    alert("Page saved successfully!");
 }

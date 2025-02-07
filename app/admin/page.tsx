@@ -7,6 +7,8 @@ import PageList from "@/components/dashboard/pages/PageList";
 import BlockList from "@/components/dashboard/blocks/BlockList";
 import {savePage} from "@/components/services/SavePage";
 import {TrashIcon} from "@heroicons/react/24/outline";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HomePage() {
     const [pages, setPages] = useState<Page[] | null>(null)
@@ -42,10 +44,11 @@ export default function HomePage() {
         pageToUpdate.blocks = pageToUpdate.blocks.filter((_: Block, index: number) => index !== parseInt(blockIndex));
         try {
             await savePage(pageToUpdate, true);
+            toast.success("Block successfully deleted from the page");
             window.location.href = '/admin/';
         } catch (error: any) {
             console.error("Error:", error);
-            alert(error.message);
+            toast.error(error.message);
         }
     }
     
@@ -86,6 +89,7 @@ export default function HomePage() {
                     </div>
                 </div>
             </div>
+            <ToastContainer position="top-right"/>
         </div>
     )
 };

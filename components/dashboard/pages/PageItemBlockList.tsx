@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {savePage} from "@/components/services/SavePage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface PageItemBlockLIstProps {
     page: Page;
@@ -43,11 +45,14 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
             try {
                 await savePage({...page, blocks: updatedBlockList}, true);
                 window.location.href = '/admin/';
+                toast.success("Block successfully added to the page");
             } catch (error: any) {
                 console.error("Error:", error);
-                alert(error.message);
+                toast.error(error.message);
             }
             setBlockDragged(null);
+        }else{
+            toast.error("No dragged block information");
         }
     }
     
@@ -88,6 +93,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                     No blocks
                 </div>
             )}
+            <ToastContainer position="top-right"/>
         </div>
     );
 };
