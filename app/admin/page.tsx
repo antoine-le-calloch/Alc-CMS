@@ -28,10 +28,8 @@ export default function HomePage() {
         fetchBlocks().then()
     }, [])
     
-    const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) => {
-        return !!e.dataTransfer.getData("blockIndex");
-        
-    }
+    const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) =>  
+        !!e.dataTransfer.getData("blockIndex");
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
