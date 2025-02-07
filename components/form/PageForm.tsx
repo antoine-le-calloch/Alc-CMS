@@ -128,9 +128,9 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                 </Button>
             </div>
             <div className={`${openPopup ? 'block' : 'hidden'} w-full h-full fixed top-0 left-0 bg-black bg-opacity-50`}>
-                <div className="absolute bg-white shadow-md max-w-lg w-full rounded
+            <div className="absolute bg-white shadow-md max-w-lg w-full rounded-2xl
                 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <div className="text-white bg-slate-900 w-full rounded-t">
+                    <div className="text-white bg-slate-900 w-full rounded-t-2xl">
                         <div className="text-lg font-bold text-center p-3">
                             Choose block
                         </div>
