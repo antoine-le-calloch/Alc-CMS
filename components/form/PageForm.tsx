@@ -134,7 +134,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         <div className="text-lg font-bold text-center p-3">
                             Choose block
                         </div>
-                        <button className="absolute right-2 top-2 hover:scale-110 duration-300 font-bold"
+                        <button className="absolute right-2 top-2 font-bold zoom-on-hover"
                                 onClick={() => setOpenPopup(false)}>
                             <XMarkIcon width={24} height={24}/>
                         </button>
@@ -142,8 +142,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                     <div className="flex justify-center flex-wrap gap-2 w-full p-4">
                         {loading ? <Loading/> : blocks.map((block) => (
                             <button key={block.id} onClick={() => addBlock(block)}
-                                    className="border border-gray-300 shadow rounded-lg py-4 px-2 w-1/3
-                                        hover:scale-105 duration-500">
+                                    className="border border-gray-300 shadow rounded-lg py-4 px-2 w-1/3 zoom-on-hover">
                                 {block.title}
                             </button>
                         ))}

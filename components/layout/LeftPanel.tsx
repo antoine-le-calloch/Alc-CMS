@@ -10,7 +10,7 @@ const LeftPanel = () => {
             bg-slate-900 text-white dark:bg-white dark:text-slate-900">
                 <div className="flex flex-col justify-between items-center p-4 h-full">
                     <Link href={"/admin"}
-                          className="hover:scale-110 duration-700 ease-in-out">
+                          className="zoom-on-hover">
                         <Image src="/logo/logo_alc.png" alt="Logo" width={70} height={70}/>
                     </Link>
                     <div className="flex flex-col items-center gap-y-4 text-center text-xl mx-2 font-bold">

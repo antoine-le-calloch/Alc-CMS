@@ -72,7 +72,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                     <div draggable={true}  key={index}
                          onDragOver={(e) => onDragOver(e, index)} 
                          onDragStart={(e) => onDragStart(e, index)}
-                         className="bg-gray-100 border border-gray-300 rounded-lg py-4 mb-2 cursor-grab hover:scale-105 duration-200 relative">
+                         className="bg-gray-100 border border-gray-300 rounded-lg py-4 mb-2 cursor-grab zoom-on-hover duration-200 relative">
                         <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
                         {block.title}
                     </div>
