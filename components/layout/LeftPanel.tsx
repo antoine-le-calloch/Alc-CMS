@@ -11,7 +11,7 @@ const LeftPanel = () => {
                 <div className="flex flex-col justify-between items-center p-4 h-full">
                     <Link href={"/admin"}
                           className="zoom-on-hover">
-                        <Image src="/logo/logo_alc.png" alt="Logo" width={70} height={70}/>
+                        <Image src="/logo/logo_alc.png" alt="Logo" width={70} height={47}/>
                     </Link>
                     <div className="flex flex-col items-center gap-y-4 text-center text-xl mx-2 font-bold">
                         <Link href={"/admin/"}
