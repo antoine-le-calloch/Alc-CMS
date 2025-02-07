@@ -7,7 +7,7 @@ export default function AdminLayout({children}: {
     return (
         <div className="flex min-h-screen">
             <LeftPanel/>
-            <div className="flex flex-col w-full bg-[#e9e7e2]">
+            <div className="flex flex-col w-full bg-[#e9e7e2] pb-12">
                 {children}
             </div>
         </div>
