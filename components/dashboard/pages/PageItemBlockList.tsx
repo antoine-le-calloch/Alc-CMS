@@ -9,7 +9,7 @@ interface PageItemBlockLIstProps {
 
 const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     const [previewIndex, setPreviewIndex] = useState<number>(0);
-    const [blockDragged, setBlockDragged] = useState<Block | null>(null);
+    const [IdDragged, setIdDragged] = useState<string | null>();
     
     const onDragEnter = (e: any) => {
         e.preventDefault();
