@@ -5,12 +5,10 @@ interface BlockTemplate {
 }
 
 interface Block {
-    id?: string;
-    title: string;
-    variables?: string[];
+    blockId?: string;
+    variablesContent: string[];
 }
 
-// structure of the page object
 interface Page {
     id?: string;
     title: string;
