@@ -13,20 +13,13 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     
     const onDragEnter = (e: any) => {
         e.preventDefault();
-        setBlockDragged({
-            id: e.dataTransfer.getData("blockId"),
-            title: e.dataTransfer.getData("blockTitle")
-        });
+        setIdDragged(e.dataTransfer.getData("blockId"));
     }
     
     const onDragOver = (e: any, index: number) => {
         e.preventDefault();
-        if (!blockDragged){
-            setBlockDragged({
-                id: e.dataTransfer.getData("blockId"),
-                title: e.dataTransfer.getData("blockTitle")
-            });
-        }
+        if (!IdDragged) setIdDragged(e.dataTransfer.getData("blockId"));
+        
         const {top, bottom} = e.currentTarget.getBoundingClientRect();
         const mid = (top + bottom) / 2;
         const cursorPosition = e.clientY;
@@ -40,8 +33,12 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        if (blockDragged && previewIndex !== null) {
-            const updatedBlockList = [...page.blocks.slice(0, previewIndex), blockDragged, ...page.blocks.slice(previewIndex)];
+        if (IdDragged && previewIndex !== null) {
+            const newBlock = {
+                blockId: IdDragged,
+                variablesContent: []
+            }
+            const updatedBlockList = [...page.blocks.slice(0, previewIndex), newBlock, ...page.blocks.slice(previewIndex)];
             try {
                 await savePage({...page, blocks: updatedBlockList}, true);
                 window.location.href = '/admin/';
@@ -50,7 +47,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                 console.error("Error:", error);
                 toast.error(error.message);
             }
-            setBlockDragged(null);
+            setIdDragged(null);
         }else{
             toast.error("No dragged block information");
         }
