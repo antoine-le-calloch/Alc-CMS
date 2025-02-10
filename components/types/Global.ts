@@ -1,4 +1,9 @@
-// structure of the blocks object
+interface BlockTemplate {
+    id?: string;
+    title: string;
+    variables: string[];
+}
+
 interface Block {
     id?: string;
     title: string;
