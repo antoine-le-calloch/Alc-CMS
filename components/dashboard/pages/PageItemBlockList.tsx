@@ -9,16 +9,16 @@ interface PageItemBlockLIstProps {
 
 const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     const [previewIndex, setPreviewIndex] = useState<number>(0);
-    const [IdDragged, setIdDragged] = useState<string | null>();
+    const [titleDragged, setTitleDragged] = useState<string | null>();
     
     const onDragEnter = (e: any) => {
         e.preventDefault();
-        setIdDragged(e.dataTransfer.getData("blockId"));
+        setTitleDragged(e.dataTransfer.getData("blockTitle"));
     }
     
     const onDragOver = (e: any, index: number) => {
         e.preventDefault();
-        if (!IdDragged) setIdDragged(e.dataTransfer.getData("blockId"));
+        if (!titleDragged) setTitleDragged(e.dataTransfer.getData("blockTitle"));
         
         const {top, bottom} = e.currentTarget.getBoundingClientRect();
         const mid = (top + bottom) / 2;
@@ -33,9 +33,10 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        if (IdDragged && previewIndex !== null) {
+        const blockTemplateId = e.dataTransfer.getData("blockId");
+        if (blockTemplateId && previewIndex !== null) {
             const newBlock = {
-                blockId: IdDragged,
+                blockId: blockTemplateId,
                 variablesContent: []
             }
             const updatedBlockList = [...page.blocks.slice(0, previewIndex), newBlock, ...page.blocks.slice(previewIndex)];
@@ -47,7 +48,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                 console.error("Error:", error);
                 toast.error(error.message);
             }
-            setIdDragged(null);
+            setTitleDragged(null);
         }else{
             toast.error("No dragged block information");
         }
@@ -62,13 +63,13 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
 
     return (
         <div className="flex flex-col items-center my-2 w-full" onDrop={(e) => onDrop(e)}
-             onDragEnter={(e => onDragEnter(e))} onDragExit={() => setBlockDragged(null)}>
+             onDragEnter={(e => onDragEnter(e))} onDragExit={() => setTitleDragged(null)}>
             {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
                 <div key={index} className="w-3/4">
-                    {blockDragged && previewIndex === index && 
+                    {titleDragged && previewIndex === index && 
                         // Display placeholder when dragging a block over the list
                         <div className="bg-gray-100 border border-dashed border-gray-300 text-gray-400 rounded-lg py-4 mb-2">
-                            {blockDragged.title}
+                            {titleDragged}
                         </div>
                     }
                     <div draggable={true}  key={index}
@@ -78,10 +79,10 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                         <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
                         {block.title}
                     </div>
-                    {blockDragged && previewIndex === index + 1 && index === page.blocks.length - 1 &&
+                    {titleDragged && previewIndex === index + 1 && index === page.blocks.length - 1 &&
                         // Display placeholder when dragging a block after the last item of the list
                         <div className="bg-gray-100 border border-dashed border-gray-300 text-gray-400 rounded-lg py-4 mb-2">
-                            {blockDragged.title}
+                            {titleDragged}
                         </div>
                     }
                 </div>
