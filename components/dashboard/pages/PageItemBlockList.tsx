@@ -2,12 +2,14 @@ import React, {useState} from 'react';
 import {savePage} from "@/components/services/SavePage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from 'next/navigation'
 
 interface PageItemBlockLIstProps {
     page: Page;
 }
 
 const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
+    const router = useRouter();
     const [previewIndex, setPreviewIndex] = useState<number>(0);
     const [titleDragged, setTitleDragged] = useState<string | null>();
     
@@ -42,7 +44,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
             const updatedBlockList = [...page.blocks.slice(0, previewIndex), newBlock, ...page.blocks.slice(previewIndex)];
             try {
                 await savePage({...page, blocks: updatedBlockList}, true);
-                window.location.href = '/admin/';
+                router.refresh();
                 toast.success("Block successfully added to the page");
             } catch (error: any) {
                 console.error("Error:", error);
