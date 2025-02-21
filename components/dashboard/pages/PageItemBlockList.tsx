@@ -12,6 +12,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
     const router = useRouter();
     const [previewIndex, setPreviewIndex] = useState<number>(0);
     const [titleDragged, setTitleDragged] = useState<string | null>();
+    const [blockTemplates, setBlockTemplates] = useState<BlockTemplate[]>([]);
     
     const onDragEnter = (e: any) => {
         e.preventDefault();
@@ -79,7 +80,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
                          onDragStart={(e) => onDragStart(e, index)}
                          className="bg-gray-100 border border-gray-300 rounded-lg py-4 mb-2 cursor-grab zoom-on-hover duration-200 relative">
                         <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
-                        {block.title}
+                        {blockTemplates.find((blockTemplate: BlockTemplate) => blockTemplate.id === block.blockId)?.title}
                     </div>
                     {titleDragged && previewIndex === index + 1 && index === page.blocks.length - 1 &&
                         // Display placeholder when dragging a block after the last item of the list
