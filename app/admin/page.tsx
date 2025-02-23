@@ -76,7 +76,7 @@ export default function HomePage() {
                             </h2>
                             <div className="z-10">
                                 { pages === null ? 
-                                    <Loading/> : <PageList pages={pages} editPageLink="pages/edit" addPageLink="pages/new"/>
+                                    <Loading/> : <PageList pages={pages} blocks={blocks} editPageLink="pages/edit" addPageLink="pages/new"/>
                                 }
                             </div>
                         </div>
