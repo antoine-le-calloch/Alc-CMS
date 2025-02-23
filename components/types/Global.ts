@@ -1,12 +1,12 @@
-interface BlockTemplate {
+interface Block {
     id?: string;
     title: string;
     variables: string[];
 }
 
-interface Block {
+interface PageItem {
     blockId?: string;
-    variablesContent: string[];
+    content: string[];
 }
 
 interface Page {
