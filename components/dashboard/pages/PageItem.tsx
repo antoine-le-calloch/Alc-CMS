@@ -5,10 +5,11 @@ import PageItemBlockList from "@/components/dashboard/pages/PageItemBlockList";
 
 interface PageItemProps {
     page: Page;
+    blocks: Block[];
     editPageLink: string;
 }
 
-const PageItem: React.FC<PageItemProps> = ({page, editPageLink}) => {
+const PageItem: React.FC<PageItemProps> = ({page, blocks, editPageLink}) => {
     const [pageExpanded, setPageExpanded] = useState<boolean>(false)
 
     return (
@@ -22,7 +23,7 @@ const PageItem: React.FC<PageItemProps> = ({page, editPageLink}) => {
                 <ArrowDownCircleIcon className={`${pageExpanded? "h-5" : "h-0"} w-5 group-hover:h-5 duration-500`}/>
             </button>
             {pageExpanded && 
-                <PageItemBlockList page={page}/>
+                <PageItemBlockList page={page} blocks={blocks}/>
             }
         </div>
     );
