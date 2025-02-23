@@ -6,13 +6,13 @@ import { useRouter } from 'next/navigation'
 
 interface PageItemBlockLIstProps {
     page: Page;
+    blocks: Block[];
 }
 
-const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page}) => {
+const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => {
     const router = useRouter();
     const [previewIndex, setPreviewIndex] = useState<number>(0);
     const [titleDragged, setTitleDragged] = useState<string | null>();
-    const [blockTemplates, setBlockTemplates] = useState<BlockTemplate[]>([]);
     
     const onDragEnter = (e: any) => {
         e.preventDefault();
