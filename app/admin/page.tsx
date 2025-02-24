@@ -35,17 +35,17 @@ export default function HomePage() {
     }, [])
     
     const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) =>  
-        !!e.dataTransfer.getData("blockIndex");
+        !!e.dataTransfer.getData("itemId");
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const blockIndex = e.dataTransfer.getData("blockIndex");
-        if (!blockIndex) return;
+        const itemId = e.dataTransfer.getData("itemId");
+        if (!itemId) return;
         
         const pageToUpdate = pages?.find((page: Page) => page.id === e.dataTransfer.getData("pageId"));
         if (!pageToUpdate) return;
         
-        pageToUpdate.blocks = pageToUpdate.blocks.filter((_: Block, index: number) => index !== parseInt(blockIndex));
+        pageToUpdate.items = pageToUpdate.items.filter((item: PageItem) => item.id !== itemId);
         try {
             await savePage(pageToUpdate, true);
             toast.success("Block successfully deleted from the page");
@@ -75,7 +75,7 @@ export default function HomePage() {
                                 PAGES
                             </h2>
                             <div className="z-10">
-                                { pages === null ? 
+                                { pages === null || blocks === null ?
                                     <Loading/> : <PageList pages={pages} blocks={blocks} editPageLink="pages/edit" addPageLink="pages/new"/>
                                 }
                             </div>
