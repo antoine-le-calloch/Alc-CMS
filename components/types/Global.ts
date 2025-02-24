@@ -13,5 +13,5 @@ interface Page {
     id?: string;
     title: string;
     link: string;
-    blocks: Block[];
+    items: PageItem[];
 }
