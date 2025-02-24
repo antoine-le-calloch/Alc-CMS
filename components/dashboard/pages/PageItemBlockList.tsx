@@ -36,10 +36,10 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const blockTemplateId = e.dataTransfer.getData("blockId");
-        if (blockTemplateId && previewIndex !== null) {
+        const blockId = e.dataTransfer.getData("blockId");
+        if (blockId && previewIndex !== null) {
             const newBlock = {
-                blockId: blockTemplateId,
+                blockId: blockId,
                 variablesContent: []
             }
             const updatedBlockList = [...page.blocks.slice(0, previewIndex), newBlock, ...page.blocks.slice(previewIndex)];
