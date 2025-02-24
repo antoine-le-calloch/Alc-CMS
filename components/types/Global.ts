@@ -5,6 +5,7 @@ interface Block {
 }
 
 interface PageItem {
+    id?: string;
     blockId?: string;
     content: string[];
 }
