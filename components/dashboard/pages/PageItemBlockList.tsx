@@ -38,13 +38,13 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
         e.preventDefault();
         const blockId = e.dataTransfer.getData("blockId");
         if (blockId && previewIndex !== null) {
-            const newBlock = {
+            const newPageItem: PageItem = {
                 blockId: blockId,
-                variablesContent: []
+                content: []
             }
-            const updatedBlockList = [...page.blocks.slice(0, previewIndex), newBlock, ...page.blocks.slice(previewIndex)];
+            const updatedItemList = [...page.items.slice(0, previewIndex), newPageItem, ...page.items.slice(previewIndex)];
             try {
-                await savePage({...page, blocks: updatedBlockList}, true);
+                await savePage({...page, items: updatedItemList}, true);
                 router.refresh();
                 toast.success("Block successfully added to the page");
             } catch (error: any) {
@@ -67,7 +67,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
     return (
         <div className="flex flex-col items-center my-2 w-full" onDrop={(e) => onDrop(e)}
              onDragEnter={(e => onDragEnter(e))} onDragExit={() => setTitleDragged(null)}>
-            {page.blocks.length > 0 ? page.blocks.map((block: Block, index: number) => (
+            {page.items.length > 0 ? page.items.map((item: PageItem, index: number) => (
                 <div key={index} className="w-3/4">
                     {titleDragged && previewIndex === index && 
                         // Display placeholder when dragging a block over the list
@@ -80,9 +80,9 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
                          onDragStart={(e) => onDragStart(e, index)}
                          className="bg-gray-100 border border-gray-300 rounded-lg py-4 mb-2 cursor-grab zoom-on-hover duration-200 relative">
                         <div className="absolute left-1 top-0.5 text-xs text-gray-400">{index}</div>
-                        {blockTemplates.find((blockTemplate: BlockTemplate) => blockTemplate.id === block.blockId)?.title}
+                        {blocks.find((block: Block) => block.id === item.blockId)?.title}
                     </div>
-                    {titleDragged && previewIndex === index + 1 && index === page.blocks.length - 1 &&
+                    {titleDragged && previewIndex === index + 1 && index === page.items.length - 1 &&
                         // Display placeholder when dragging a block after the last item of the list
                         <div className="bg-gray-100 border border-dashed border-gray-300 text-gray-400 rounded-lg py-4 mb-2">
                             {titleDragged}
