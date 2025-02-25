@@ -20,19 +20,17 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     const [openPopup, setOpenPopup] = useState(false);
     const [blocks, setBlocks] = useState<Block[]>([]);
     const [loading, setLoading] = useState(false);
-    
-    const openPopupHandler = () => {
+
+    useEffect(() => {
         async function fetchBlocks() {
             setLoading(true);
-            let res = await fetch('/api/blocks');
+            let res = await fetch('/api/blocks')
             let data = await res.json()
-            setBlocks(data);
+            setBlocks(data)
             setLoading(false);
         }
-        if (blocks.length == 0)
-            fetchBlocks().then()
-        setOpenPopup(!openPopup);
-    }
+        fetchBlocks().then()
+    }, [])
     
     const addBlock = (block: Block) => {
         const newItem = {
