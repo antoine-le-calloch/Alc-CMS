@@ -15,7 +15,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     const [page, setPage] = useState<Page>(pageToEdit || {
         title: '',
         link: '',
-        blocks: []
+        items: [],
     });
     const [openPopup, setOpenPopup] = useState(false);
     const [blocks, setBlocks] = useState<Block[]>([]);
@@ -35,9 +35,13 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     }
     
     const addBlock = (block: Block) => {
+        const newItem = {
+            blockId: block.id,
+            content: []
+        };
         setPage({
             ...page,
-            blocks: [...page.blocks, block]
+            items: [...page.items, newItem]
         });
         setOpenPopup(false);
     };
