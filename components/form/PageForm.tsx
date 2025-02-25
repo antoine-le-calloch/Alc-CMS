@@ -24,9 +24,14 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     useEffect(() => {
         async function fetchBlocks() {
             setLoading(true);
-            let res = await fetch('/api/blocks')
-            let data = await res.json()
-            setBlocks(data)
+            try {
+                let res = await fetch('/api/blocks')
+                let data = await res.json()
+                setBlocks(data)
+            } catch (error: any) {
+                console.error("Error:", error);
+                alert(error.message);
+            }
             setLoading(false);
         }
         fetchBlocks().then()
