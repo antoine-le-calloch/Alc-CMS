@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 import Button from "@/components/utils/button/Button";
 import {savePage} from "@/components/services/SavePage";
@@ -19,6 +19,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     });
     const [openPopup, setOpenPopup] = useState(false);
     const [blocks, setBlocks] = useState<Block[]>([]);
+    const [itemsAndBlocksList, setItemsAndBlocksList] = useState<{ item: PageItem, block: Block | null }[]>([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -36,6 +37,15 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
         }
         fetchBlocks().then()
     }, [])
+
+    useEffect(() => {
+        if (blocks.length > 0) {
+            setItemsAndBlocksList(page.items.map((item) => {
+                const block = blocks.find(block => block.id === item.blockId) || null;
+                return { item, block };
+            }));
+        }
+    }, [blocks, page.items]);
     
     const addBlock = (block: Block) => {
         const newItem = {
@@ -100,17 +110,16 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                 </h2>
                 <div className="flex flex-col p-6">
                     <div>
-                        {page.blocks && page.blocks.map((block, index) => (
-                        {page.items?.map((item, index) => (
+                        {itemsAndBlocksList.map(({ item, block }, index) => (
                             <div key={index} className="border border-gray-300 bg-white rounded-lg p-2 mb-2">
-                                {block.title}
+                                {block?.title}
                                 <div className="py-2 flex flex-col gap-2 items-center">
-                                    {block.variables && block.variables.map((variable, index) => (
+                                    {block?.variables.map((variable, index) => (
                                         <input type="text"
                                                key={variable}
                                                value={variable}
                                                placeholder="variable"
-                                               onChange={(e) => { block.variables[index] = [e.target.value] }}
+                                               onChange={(e) => { block.variables[index] = e.target.value }}
                                                className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm w-1/3
                                                focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"/>
                                     ))}
@@ -119,7 +128,7 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
                         ))}
                     </div>
                     <div className="flex justify-center items-center">
-                        <button onClick={openPopupHandler} type="button">
+                        <button onClick={() => setOpenPopup(true)} type="button">
                             <PlusIcon className="plus-icon-style h-6 w-6"/>
                         </button>
                     </div>
