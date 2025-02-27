@@ -35,17 +35,17 @@ export default function HomePage() {
     }, [])
     
     const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) =>  
-        !!e.dataTransfer.getData("itemId");
+        !!e.dataTransfer.getData("itemIndex");
     
     const onDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
-        const itemId = e.dataTransfer.getData("itemId");
-        if (!itemId) return;
+        const itemIndex = e.dataTransfer.getData("itemIndex");
+        if (!itemIndex) return;
         
         const pageToUpdate = pages?.find((page: Page) => page.id === e.dataTransfer.getData("pageId"));
         if (!pageToUpdate) return;
         
-        pageToUpdate.items = pageToUpdate.items.filter((item: PageItem) => item.id !== itemId);
+        pageToUpdate.items = pageToUpdate.items.filter((_, index) => index !== parseInt(itemIndex));
         try {
             await savePage(pageToUpdate, true);
             toast.success("Block successfully deleted from the page");
