@@ -19,9 +19,14 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
         setTitleDragged(e.dataTransfer.getData("blockTitle"));
     }
     
-    const onDragOver = (e: any, index: number) => {
+    const onDragOver = (e: any, index: number | null) => {
         e.preventDefault();
         if (!titleDragged) setTitleDragged(e.dataTransfer.getData("blockTitle"));
+        
+        if (index === null) {
+            setPreviewIndex(0);
+            return;
+        }
         
         const {top, bottom} = e.currentTarget.getBoundingClientRect();
         const mid = (top + bottom) / 2;
@@ -90,7 +95,8 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
                     }
                 </div>
             )) : (
-                <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed">
+                <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed"
+                     onDragOver={(e) => onDragOver(e, null)}>
                     No blocks
                 </div>
             )}
