@@ -97,7 +97,7 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
             )) :
                 <div className="text-gray-500 bg-gray-100 opacity-50 border border-gray-500 rounded-lg py-2 px-12 mb-2 border-dashed w-3/4"
                      onDragOver={(e) => onDragOver(e, null)}>
-                    No blocks
+                    { titleDragged ? titleDragged : "No blocks"}
                 </div>
             }
             <ToastContainer position="top-right"/>
