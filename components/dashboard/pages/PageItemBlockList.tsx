@@ -50,8 +50,8 @@ const PageItemBlockLIst: React.FC<PageItemBlockLIstProps> = ({page, blocks}) => 
             const updatedItemList = [...page.items.slice(0, previewIndex), newPageItem, ...page.items.slice(previewIndex)];
             try {
                 await savePage({...page, items: updatedItemList}, true);
-                router.refresh();
                 toast.success("Block successfully added to the page");
+                router.refresh();
             } catch (error: any) {
                 console.error("Error:", error);
                 toast.error(error.message);
