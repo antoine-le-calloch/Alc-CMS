@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState} from 'react';
-import {useRouter} from "next/navigation";
 
 import TopBar from "@/components/layout/TopBar";
 import Loading from "@/components/utils/Loading";
@@ -14,10 +13,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function HomePage() {
-    const router = useRouter();
     const [pages, setPages] = useState<Page[] | null>(null)
     const [blocks, setBlocks] = useState<Block[] | null>(null)
     const [isDragOver, setIsDragOver] = useState(false);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         async function fetchPages() {
@@ -32,7 +31,8 @@ export default function HomePage() {
         }
         fetchPages().then()
         fetchBlocks().then()
-    }, [])
+        setRefresh(false)
+    }, [refresh])
     
     const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) =>  
         !!e.dataTransfer.getData("itemIndex");
@@ -49,7 +49,7 @@ export default function HomePage() {
         try {
             await savePage(pageToUpdate, true);
             toast.success("Block successfully deleted from the page");
-            router.refresh();
+            setRefresh(true);
         } catch (error: any) {
             console.error("Error:", error);
             toast.error(error.message);
