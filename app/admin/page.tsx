@@ -16,7 +16,6 @@ export default function HomePage() {
     const [pages, setPages] = useState<Page[] | null>(null)
     const [blocks, setBlocks] = useState<Block[] | null>(null)
     const [isDragOver, setIsDragOver] = useState(false);
-    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         async function fetchPages() {
@@ -31,8 +30,7 @@ export default function HomePage() {
         }
         fetchPages().then()
         fetchBlocks().then()
-        setRefresh(false)
-    }, [refresh])
+    }, [])
     
     const isDragFromPages = (e: React.DragEvent<HTMLDivElement>) =>  
         !!e.dataTransfer.getData("itemIndex");
@@ -49,7 +47,6 @@ export default function HomePage() {
         try {
             await savePage(pageToUpdate, true);
             toast.success("Block successfully deleted from the page");
-            setRefresh(true);
         } catch (error: any) {
             console.error("Error:", error);
             toast.error(error.message);
