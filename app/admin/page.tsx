@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 import TopBar from "@/components/layout/TopBar";
 import Loading from "@/components/utils/Loading";
 import PageList from "@/components/dashboard/pages/PageList";
 import BlockList from "@/components/dashboard/blocks/BlockList";
-import {savePage} from "@/components/services/SavePage";
+import { savePage } from "@/components/services/SavePage";
 
-import {TrashIcon} from "@heroicons/react/24/outline";
+import { TrashIcon } from "@heroicons/react/24/outline";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
