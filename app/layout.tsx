@@ -1,5 +1,6 @@
 import React from "react";
 import "./globals.css";
+import {ToastContainer} from "react-toastify";
 
 export const metadata = {
   title: 'CMS',
@@ -15,6 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-white text-slate-900 dark:bg-slate-900 dark:text-white">
       {children}
+      <ToastContainer position="top-right"/>
       </body>
     </html>
   )
