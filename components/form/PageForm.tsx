@@ -6,6 +6,7 @@ import Button from "@/components/utils/button/Button";
 import {savePage} from "@/components/services/SavePage";
 import {PlusIcon, XMarkIcon} from "@heroicons/react/24/solid";
 import Loading from "@/components/utils/Loading";
+import {toast} from "react-toastify";
 
 interface PageFormProps {
     pageToEdit: Page | null;
@@ -60,6 +61,14 @@ const PageForm: React.FC<PageFormProps> = ({ pageToEdit }) => {
     };
 
     const handleSubmit = async () => {
+        if (!page.title) {
+            toast.error("Title is required");
+            return;
+        }
+        if (!page.link) {
+            toast.error("Link is required");
+            return;
+        }
         try {
             await savePage(page, !!pageToEdit);
             window.location.href = '/admin/';
