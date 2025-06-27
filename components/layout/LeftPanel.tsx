@@ -5,8 +5,8 @@ import {Cog6ToothIcon} from "@heroicons/react/24/outline";
 
 const LeftPanel = () => {
     return (
-        <div className="min-w-40 h-screen">
-            <div className="fixed shadow-xl w-40 h-screen hover:w-44 duration-500 ease-in-out z-30
+        <div className="min-w-36 h-screen">
+            <div className="fixed shadow-xl w-36 h-screen hover:w-40 duration-500 ease-in-out z-30
             bg-slate-900 text-white dark:bg-white dark:text-slate-900">
                 <div className="flex flex-col justify-between items-center p-4 h-full">
                     <Link href={"/admin"}
