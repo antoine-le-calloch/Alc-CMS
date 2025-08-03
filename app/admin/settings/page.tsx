@@ -8,6 +8,8 @@ export default function SettingsPage() {
     return (
         <div>
             <TopBar titleName="Settings" />
+            <div>
+            </div>
         </div>
     )
 };
